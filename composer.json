@@ -1,0 +1,44 @@
+{
+    "name": "phonyland/language-model",
+    "description": "⚙️ Phony Language Model for \uD83D\uDE43 Phony Framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yunus Emre Deligöz",
+            "email": "ye@deligoz.me"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phonyland\\LanguageModel\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phonyland/dev-tools": "dev-master"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phonyland\\LanguageModel\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "lint": "rector process src && php-cs-fixer fix -v",
+        "test:lint": "php-cs-fixer fix -v --dry-run && rector process src --dry-run",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    }
+}
