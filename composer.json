@@ -15,7 +15,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4 || ^8.0"
+        "php": "^7.4 || ^8.0",
+        "phonyland/ngram": "dev-master"
     },
     "autoload": {
         "psr-4": {
