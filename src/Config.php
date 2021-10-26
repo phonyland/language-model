@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phonyland\LanguageModel;
 
 use RuntimeException;
+use Phonyland\NGram\Tokenizer;
 
 /***
  * @internal
@@ -15,29 +16,56 @@ final class Config
 
     public Tokenizer $tokenizer;
 
-    private string $name;
-    private int $n                  = 2;
-    private int $minLenght          = 2;
-    private bool $unique            = false;
-    private bool $excludeOriginals  = false;
-    private int $frequencyPrecision = 7;
+    public string $name;
+    public int $n = 2;
+    public int $minLenght = 2;
+    public bool $unique = false;
+    public bool $excludeOriginals = false;
+    public int $frequencyPrecision = 7;
 
-    private int $elementLimit        = 500;
-    private int $elementFirstLimit   = 500;
-    private int $sentenceFirst1Limit = 500;
-    private int $sentenceFirst2Limit = 500;
-    private int $sentenceFirst3Limit = 500;
-    private int $sentenceLast1Limit  = 500;
-    private int $sentenceLast2Limit  = 500;
-    private int $sentenceLast3Limit  = 500;
+    public int $elementLimit = 500;
+    public int $elementFirstLimit = 500;
+    public int $sentenceFirst1Limit = 500;
+    public int $sentenceFirst2Limit = 500;
+    public int $sentenceFirst3Limit = 500;
+    public int $sentenceLast1Limit = 500;
+    public int $sentenceLast2Limit = 500;
+    public int $sentenceLast3Limit = 500;
 
     // endregion
 
+    // region Public Methods
+
     public function __construct(string $name)
     {
-        $this->name      = $name;
+        $this->name = $name;
         $this->tokenizer = new Tokenizer();
     }
+
+    public function toArray(): array
+    {
+        return [
+            'name'                => $this->name,
+            'n'                   => $this->n,
+            'min-lenght'          => $this->minLenght,
+            'unique'              => $this->unique,
+            'exclude-originals'   => $this->excludeOriginals,
+            'frequency-precision' => $this->frequencyPrecision,
+            'limits'              => [
+                'element'          => $this->elementLimit,
+                'element-first'    => $this->elementFirstLimit,
+                'sentence-first-1' => $this->sentenceFirst1Limit,
+                'sentence-first-2' => $this->sentenceFirst2Limit,
+                'sentence-first-3' => $this->sentenceFirst3Limit,
+                'sentence-last-1'  => $this->sentenceLast1Limit,
+                'sentence-last-2'  => $this->sentenceLast2Limit,
+                'sentence-last-3'  => $this->sentenceLast3Limit,
+            ],
+            'tokenizer' => $this->tokenizer->toArray(),
+        ];
+    }
+
+    // endregion
 
     // region Fluent Setters
 
