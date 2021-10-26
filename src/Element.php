@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
+use Phonyland\NGram\NGramCount;
+use Phonyland\NGram\NGramFrequency;
+
 /***
  * @internal
  */
@@ -17,27 +20,23 @@ final class Element
         public array $lastChildren = [],
     ) {}
 
-    /** @phpstan-var array<string, float> $children */
-    public array $children = [];
-
-    /** @phpstan-var array<string, float> $lastChildren */
-    public array $lastChildren = [];
-
-    public function __construct(string $ngram)
+    public function countLastChildren(string $ngram): void
     {
-        $this->ngram = $ngram;
+        NGramCount::elementOnArray($ngram, $this->lastChildren);
     }
 
-    /**
-     * @phpstan-return array<string, array<int, array<string, float>>>
-     */
-    public function toArray(): array
+    public function countChildren(string $ngram): void
     {
-        return [
-            $this->ngram => [
-                $this->children,
-                $this->lastChildren
-            ]
-        ];
+        NGramCount::elementOnArray($ngram, $this->children);
+    }
+
+    public function calculateChildrenFrequency(): void
+    {
+        NGramFrequency::frequencyFromCount($this->children);
+    }
+
+    public function calculateLastChildrenFrequency(): void
+    {
+        NGramFrequency::frequencyFromCount($this->lastChildren);
     }
 }
