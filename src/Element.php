@@ -7,9 +7,15 @@ namespace Phonyland\LanguageModel;
 /***
  * @internal
  */
-final class NGramModelElement
+final class Element
 {
-    public string $ngram;
+    public function __construct(
+        public string $ngram,
+        /** @var array<string, float> $children */
+        public array $children = [],
+        /** @var array<string, float> $lastChildren */
+        public array $lastChildren = [],
+    ) {}
 
     /** @phpstan-var array<string, float> $children */
     public array $children = [];
