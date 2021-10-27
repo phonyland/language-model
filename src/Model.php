@@ -11,26 +11,32 @@ final class Model
 {
     public Config $config;
 
-    /** @var array<array<string>> */
-    private array $tokenizedSentences = [];
     /** @var array<string, Element> */
     private array $elements = [];
-    /** @var array<string, float> $firstElements */
+
+    /** @var array<string, float> */
     private array $firstElements = [];
-    /** @var array<string> $excluded */
+
+    /** @var array<string> */
     private array $excluded = [];
-    /** @var array<string, float> $sentenceFirst1 */
-    private array $sentenceFirst1 = [];
-    /** @var array<string, float> $sentenceFirst2 */
-    private array $sentenceFirst2 = [];
-    /** @var array<string, float> $sentenceFirst3 */
-    private array $sentenceFirst3 = [];
-    /** @var array<string, float> $sentenceLast1 */
-    private array $sentenceLast1 = [];
-    /** @var array<string, float> $sentenceLast2 */
-    private array $sentenceLast2 = [];
-    /** @var array<string, float> $sentenceLast3 */
-    private array $sentenceLast3 = [];
+
+    /** @var array<string, float> */
+    private array $firstElementOfSentence = [];
+
+    /** @var array<string, float> */
+    private array $secondElementOfSentence = [];
+
+    /** @var array<string, float> */
+    private array $thirdElementOfSentence = [];
+
+    /** @var array<string, float> */
+    private array $lastElementOfSentence = [];
+
+    /** @var array<string, float> */
+    private array $secondToLastElementOfSentence = [];
+
+    /** @var array<string, float> */
+    private array $thirdToLastElementOfSentence = [];
 
     public function __construct(string $name)
     {
@@ -38,16 +44,15 @@ final class Model
     }
 
     /**
-     * @param  string  $text
-     *
      * @return array<array>
      */
     public function build(string $text): array
     {
-        $this->tokenizedSentences = $this->config->tokenizer->tokenizeBySentences($text);
+        $tokenizedSentences = $this->config->tokenizer->tokenizeBySentences($text);
 
-        foreach ($this->tokenizedSentences as $sentence) {
-            foreach ($sentence as $token) {
+        foreach ($tokenizedSentences as $sentence) {
+            $numberOfWordsInSentence = count($sentence);
+            foreach ($sentence as $orderInSentence => $token) {
                 $ngramCount = mb_strlen($token) - $this->config->n + 1;
 
                 /** @var \Phonyland\LanguageModel\Element|null $previousElement */
@@ -63,6 +68,30 @@ final class Model
 
                     if ($i === 0) {
                         NGramCount::elementOnArray($ngram, $this->firstElements);
+
+                        if ($orderInSentence === 0) {
+                            NGramCount::elementOnArray($ngram, $this->firstElementOfSentence);
+                        }
+
+                        if ($orderInSentence === 1 && $numberOfWordsInSentence >= 2) {
+                            NGramCount::elementOnArray($ngram, $this->secondElementOfSentence);
+                        }
+
+                        if ($orderInSentence === 2 && $numberOfWordsInSentence >= 3) {
+                            NGramCount::elementOnArray($ngram, $this->thirdElementOfSentence);
+                        }
+
+                        if (($numberOfWordsInSentence - 1) === $orderInSentence && $numberOfWordsInSentence >= 2) {
+                            NGramCount::elementOnArray($ngram, $this->lastElementOfSentence);
+                        }
+
+                        if (($numberOfWordsInSentence - 2) === $orderInSentence && $numberOfWordsInSentence >= 3) {
+                            NGramCount::elementOnArray($ngram, $this->secondToLastElementOfSentence);
+                        }
+
+                        if (($numberOfWordsInSentence - 3) === $orderInSentence && $numberOfWordsInSentence >= 4) {
+                            NGramCount::elementOnArray($ngram, $this->thirdToLastElementOfSentence);
+                        }
                     }
 
                     if ($previousElement !== null) {
@@ -91,25 +120,31 @@ final class Model
             $ngramElement->calculateLastChildrenFrequency();
 
             $this->elements[$nGramKeys[$i]] = [
-                'children' => array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
-                'last_children' => array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
+                array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
+                array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
             ];
         }
 
         NGramFrequency::frequencyFromCount($this->firstElements);
+        NGramFrequency::frequencyFromCount($this->firstElementOfSentence);
+        NGramFrequency::frequencyFromCount($this->secondElementOfSentence);
+        NGramFrequency::frequencyFromCount($this->thirdElementOfSentence);
+        NGramFrequency::frequencyFromCount($this->lastElementOfSentence);
+        NGramFrequency::frequencyFromCount($this->secondToLastElementOfSentence);
+        NGramFrequency::frequencyFromCount($this->thirdToLastElementOfSentence);
 
         return [
             'config' => $this->config->toArray(),
-            'data' => [
-                'elements'         => $this->elements,
-                'first_elements'   => $this->firstElements,
-                'sentence_first_1' => $this->sentenceFirst1,
-                'sentence_first_2' => $this->sentenceFirst2,
-                'sentence_first_3' => $this->sentenceFirst3,
-                'sentence_last_1'  => $this->sentenceLast1,
-                'sentence_last_2'  => $this->sentenceLast2,
-                'sentence_last_3'  => $this->sentenceLast3,
-                'excluded'         => $this->excluded,
+            'data'   => [
+                'elements'                           => $this->elements,
+                'first_elements'                     => $this->firstElements,
+                'first_element_of_sentence'          => $this->firstElementOfSentence,
+                'second_element_of_sentence'         => $this->secondElementOfSentence,
+                'third_element_of_sentence'          => $this->thirdElementOfSentence,
+                'last_element_of_sentence'           => $this->lastElementOfSentence,
+                'second_to_last_element_of_sentence' => $this->secondToLastElementOfSentence,
+                'third_to_last_element_of_sentence'  => $this->thirdToLastElementOfSentence,
+                'excluded'                           => $this->excluded,
             ],
         ];
     }
