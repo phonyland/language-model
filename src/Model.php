@@ -11,25 +11,20 @@ final class Model
 {
     public Config $config;
 
-    /** @var array<array<string>> $tokenizedSentences */
+    /** @var array<array<string>> */
     private array $tokenizedSentences = [];
 
-    /** @var array<string, Element> $elements */
+    /** @var array<string, Element> */
     private array $elements = [];
+
     /** @phpstan-var array<string, float> $firstElements */
     private array $firstElements = [];
-    /** @phpstan-var array<string, float> $sentenceFirst1 */
-    private array $sentenceFirst1 = [];
-    /** @phpstan-var array<string, float> $sentenceFirst2 */
-    private array $sentenceFirst2 = [];
-    /** @phpstan-var array<string, float> $sentenceFirst3 */
-    private array $sentenceFirst3 = [];
-    /** @phpstan-var array<string, float> $sentenceLast1 */
-    private array $sentenceLast1 = [];
-    /** @phpstan-var array<string, float> $sentenceLast2 */
-    private array $sentenceLast2 = [];
-    /** @phpstan-var array<string, float> $sentenceLast3 */
-    private array $sentenceLast3 = [];
+
+
+
+
+
+
 
     /** @phpstan-var array<string> $excluded */
     private array $excluded = [];
@@ -40,11 +35,7 @@ final class Model
     }
 
     /**
-     *
-     * @param  string  $text
-     *
      * @phpstan-return array<array>
-     * @return array
      */
     public function build(string $text): array
     {
@@ -61,9 +52,9 @@ final class Model
                     $ngram = mb_substr($token, $i, $this->config->n);
 
                     /** @var \Phonyland\LanguageModel\Element|null $ngramElement */
-                    $ngramElement = !array_key_exists($ngram, $this->elements)
-                        ? $this->elements[$ngram] = new Element($ngram)
-                        : $this->elements[$ngram];
+                    $ngramElement                 = array_key_exists($ngram, $this->elements)
+                        ? $this->elements[$ngram]
+                        : ($this->elements[$ngram] = new Element($ngram));
 
                     if ($i === 0) {
                         NGramCount::elementOnArray($ngram, $this->firstElements);
@@ -83,7 +74,7 @@ final class Model
             }
         }
 
-        $nGramKeys = array_keys($this->elements);
+        $nGramKeys     = array_keys($this->elements);
         $nGramKeyCount = count($nGramKeys);
 
         for ($i = 0; $i < $nGramKeyCount; $i++) {
@@ -95,8 +86,8 @@ final class Model
             $ngramElement->calculateLastChildrenFrequency();
 
             $this->elements[$nGramKeys[$i]] = [
-                count(array_keys($ngramElement->children)) > 0 ? $ngramElement->children : 0,
-                count(array_keys($ngramElement->lastChildren)) > 0 ? $ngramElement->lastChildren : 0,
+                array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
+                array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
             ];
         }
 
@@ -105,7 +96,6 @@ final class Model
         return [
             'config' => '', // $this->config->toArray(),
             'data'   => [
-                'e'   => $this->elements,
                 'fe'  => $this->firstElements,
                 'sf1' => '',
                 'sf2' => '',

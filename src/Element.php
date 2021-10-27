@@ -18,7 +18,8 @@ final class Element
         public array $children = [],
         /** @var array<string, float> $lastChildren */
         public array $lastChildren = [],
-    ) {}
+    ) {
+    }
 
     public function countLastChildren(string $ngram): void
     {

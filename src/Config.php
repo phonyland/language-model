@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
-use RuntimeException;
 use Phonyland\NGram\Tokenizer;
+use RuntimeException;
 
 /***
  * @internal
@@ -17,20 +17,20 @@ final class Config
     public Tokenizer $tokenizer;
 
     public string $name;
-    public int $n = 2;
-    public int $minLenght = 2;
-    public bool $unique = false;
-    public bool $excludeOriginals = false;
+    public int $n                  = 2;
+    public int $minLenght          = 2;
+    public bool $unique            = false;
+    public bool $excludeOriginals  = false;
     public int $frequencyPrecision = 7;
 
-    public int $elementLimit = 500;
-    public int $elementFirstLimit = 500;
+    public int $elementLimit        = 500;
+    public int $elementFirstLimit   = 500;
     public int $sentenceFirst1Limit = 500;
     public int $sentenceFirst2Limit = 500;
     public int $sentenceFirst3Limit = 500;
-    public int $sentenceLast1Limit = 500;
-    public int $sentenceLast2Limit = 500;
-    public int $sentenceLast3Limit = 500;
+    public int $sentenceLast1Limit  = 500;
+    public int $sentenceLast2Limit  = 500;
+    public int $sentenceLast3Limit  = 500;
 
     // endregion
 
@@ -38,7 +38,7 @@ final class Config
 
     public function __construct(string $name)
     {
-        $this->name = $name;
+        $this->name      = $name;
         $this->tokenizer = new Tokenizer();
     }
 
