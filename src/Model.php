@@ -13,21 +13,24 @@ final class Model
 
     /** @var array<array<string>> */
     private array $tokenizedSentences = [];
-
     /** @var array<string, Element> */
     private array $elements = [];
-
-    /** @phpstan-var array<string, float> $firstElements */
+    /** @var array<string, float> $firstElements */
     private array $firstElements = [];
-
-
-
-
-
-
-
-    /** @phpstan-var array<string> $excluded */
+    /** @var array<string> $excluded */
     private array $excluded = [];
+    /** @var array<string, float> $sentenceFirst1 */
+    private array $sentenceFirst1 = [];
+    /** @var array<string, float> $sentenceFirst2 */
+    private array $sentenceFirst2 = [];
+    /** @var array<string, float> $sentenceFirst3 */
+    private array $sentenceFirst3 = [];
+    /** @var array<string, float> $sentenceLast1 */
+    private array $sentenceLast1 = [];
+    /** @var array<string, float> $sentenceLast2 */
+    private array $sentenceLast2 = [];
+    /** @var array<string, float> $sentenceLast3 */
+    private array $sentenceLast3 = [];
 
     public function __construct(string $name)
     {
@@ -35,7 +38,9 @@ final class Model
     }
 
     /**
-     * @phpstan-return array<array>
+     * @param  string  $text
+     *
+     * @return array<array>
      */
     public function build(string $text): array
     {
@@ -86,24 +91,25 @@ final class Model
             $ngramElement->calculateLastChildrenFrequency();
 
             $this->elements[$nGramKeys[$i]] = [
-                array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
-                array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
+                'children' => array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
+                'last_children' => array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
             ];
         }
 
         NGramFrequency::frequencyFromCount($this->firstElements);
 
         return [
-            'config' => '', // $this->config->toArray(),
-            'data'   => [
-                'fe'  => $this->firstElements,
-                'sf1' => '',
-                'sf2' => '',
-                'sf3' => '',
-                'sl1' => '',
-                'sl2' => '',
-                'sl3' => '',
-                'e'   => $this->excluded,
+            'config' => $this->config->toArray(),
+            'data' => [
+                'elements'         => $this->elements,
+                'first_elements'   => $this->firstElements,
+                'sentence_first_1' => $this->sentenceFirst1,
+                'sentence_first_2' => $this->sentenceFirst2,
+                'sentence_first_3' => $this->sentenceFirst3,
+                'sentence_last_1'  => $this->sentenceLast1,
+                'sentence_last_2'  => $this->sentenceLast2,
+                'sentence_last_3'  => $this->sentenceLast3,
+                'excluded'         => $this->excluded,
             ],
         ];
     }

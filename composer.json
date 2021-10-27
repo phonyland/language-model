@@ -16,7 +16,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.0",
-        "phonyland/ngram": "dev-master",
+        "phonyland/ngram": "dev-master"
     },
     "autoload": {
         "psr-4": {
