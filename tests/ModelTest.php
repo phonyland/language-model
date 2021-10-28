@@ -14,12 +14,14 @@ test('Model can be build', function (): void {
                   ->excludeOriginals(true)
                   ->frequencyPrecision(7)
                   ->tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-                              ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
-                              ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
-                              ->toLowercase();
+                             ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
+                             ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
+                             ->toLowercase();
 
     $model->feed('The quick brown fox jumps over the lazy dog.');
     $model->feed('Pack my box with five dozen liquor jugs.');
+
+    $model->calculate();
 
     $model = $model->build();
     $expected = [

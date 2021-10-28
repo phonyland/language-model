@@ -110,12 +110,7 @@ final class Model
         }
     }
 
-    /**
-     * @param string $text
-     *
-     * @return array<array>
-     */
-    public function build(): array
+    public function calculate(): void
     {
         $this->excluded = array_merge(...$this->excluded);
 
@@ -143,7 +138,15 @@ final class Model
         NGramFrequency::frequencyFromCount($this->lastElementOfSentence);
         NGramFrequency::frequencyFromCount($this->secondToLastElementOfSentence);
         NGramFrequency::frequencyFromCount($this->thirdToLastElementOfSentence);
+    }
 
+    /**
+     * @param string $text
+     *
+     * @return array<array>
+     */
+    public function build(): array
+    {
         return [
             'config'   => $this->config->toArray(),
             'data'     => [
