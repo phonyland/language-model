@@ -44,6 +44,8 @@ final class Model
     }
 
     /**
+     * @param  string  $text
+     *
      * @return array<array>
      */
     public function build(string $text): array
@@ -51,6 +53,10 @@ final class Model
         $tokenizedSentences = $this->config->tokenizer->tokenizeBySentences($text);
 
         foreach ($tokenizedSentences as $sentence) {
+            if ($this->config->excludeOriginals === true) {
+                $this->excluded += $sentence;
+            }
+
             $numberOfWordsInSentence = count($sentence);
             foreach ($sentence as $orderInSentence => $token) {
                 $ngramCount = mb_strlen($token) - $this->config->n + 1;
@@ -134,8 +140,8 @@ final class Model
         NGramFrequency::frequencyFromCount($this->thirdToLastElementOfSentence);
 
         return [
-            'config' => $this->config->toArray(),
-            'data'   => [
+            'config'   => $this->config->toArray(),
+            'data'     => [
                 'elements'                           => $this->elements,
                 'first_elements'                     => $this->firstElements,
                 'first_element_of_sentence'          => $this->firstElementOfSentence,
@@ -144,8 +150,8 @@ final class Model
                 'last_element_of_sentence'           => $this->lastElementOfSentence,
                 'second_to_last_element_of_sentence' => $this->secondToLastElementOfSentence,
                 'third_to_last_element_of_sentence'  => $this->thirdToLastElementOfSentence,
-                'excluded'                           => $this->excluded,
             ],
+            'excluded' => $this->excluded,
         ];
     }
 }
