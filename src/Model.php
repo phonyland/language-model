@@ -43,18 +43,13 @@ final class Model
         $this->config = new Config($name);
     }
 
-    /**
-     * @param  string  $text
-     *
-     * @return array<array>
-     */
-    public function build(string $text): array
+    public function feed(string $text): void
     {
         $tokenizedSentences = $this->config->tokenizer->tokenizeBySentences($text);
 
         foreach ($tokenizedSentences as $sentence) {
             if ($this->config->excludeOriginals === true) {
-                $this->excluded += $sentence;
+                $this->excluded[] = $sentence;
             }
 
             $numberOfWordsInSentence = count($sentence);
@@ -113,6 +108,16 @@ final class Model
                 }
             }
         }
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return array<array>
+     */
+    public function build(): array
+    {
+        $this->excluded = array_merge(...$this->excluded);
 
         $nGramKeys     = array_keys($this->elements);
         $nGramKeyCount = count($nGramKeys);
