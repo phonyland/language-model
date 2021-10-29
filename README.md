@@ -6,36 +6,33 @@
 
 <div align="center">
 
-# Language-Model
+# ⚙️<br>Language-Model
 
-This repository contains the ⚙️ Phony Language Model for 🙃 Phony Framework.
+This repository contains the Language Model for 🙃 Phony Framework.
 
 </div>
 
 ## 🚀 Installation
 
-Requires PHP `>= 7.4` or `>= 8.0`.
+Requires PHP `>= 8.0`.
 
 You can install the package via composer:
 
-```console
+```sh
 composer require phonyland/language-model
 ```
 
-## ⌨️ Usage
-
-
 <div align="center">
 
-# 🙃   
+# 🙃
 
-If you want to start generating fake data with 🙃 Phony Framework,  
+Start generating data with 🙃 Phony Framework,  
 visit the main **[Phony Repository](https://github.com/phonyland/phony)**.
 
 Explore the docs: **[phony.land »](https://phony.land/)**  
-Follow us on Twitter: **[@phonyphp »](https://twitter.com/phonyphp)**
- 
-**[🙃 Phony Framework](https://phony.land)**  
+Follow us on Twitter: **[@phony_land »](https://twitter.com/phony_land)**
+
+**[🙃 Phony Data Generation Framework](https://phony.land)**  
 was created by  
 **[Yunus Emre Deligöz](https://twitter.com/yedeligoez)**  
 under  
