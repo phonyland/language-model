@@ -12,31 +12,31 @@ final class Model
     public Config $config;
 
     /** @var array<string, Element> */
-    private array $elements = [];
+    public array $elements = [];
 
     /** @var array<string, float> */
-    private array $firstElements = [];
+    public array $firstElements = [];
 
     /** @var array<string> */
-    private array $excluded = [];
+    public array $excluded = [];
 
     /** @var array<string, float> */
-    private array $firstElementOfSentence = [];
+    public array $firstElementOfSentence = [];
 
     /** @var array<string, float> */
-    private array $secondElementOfSentence = [];
+    public array $secondElementOfSentence = [];
 
     /** @var array<string, float> */
-    private array $thirdElementOfSentence = [];
+    public array $thirdElementOfSentence = [];
 
     /** @var array<string, float> */
-    private array $lastElementOfSentence = [];
+    public array $lastElementOfSentence = [];
 
     /** @var array<string, float> */
-    private array $secondToLastElementOfSentence = [];
+    public array $secondToLastElementOfSentence = [];
 
     /** @var array<string, float> */
-    private array $thirdToLastElementOfSentence = [];
+    public array $thirdToLastElementOfSentence = [];
 
     public function __construct(string $name)
     {
