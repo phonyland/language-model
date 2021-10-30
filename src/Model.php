@@ -140,12 +140,7 @@ final class Model
         NGramFrequency::frequencyFromCount($this->thirdToLastElementOfSentence);
     }
 
-    /**
-     * @param string $text
-     *
-     * @return array<array>
-     */
-    public function build(): array
+    public function toArray(): array
     {
         return [
             'config'   => $this->config->toArray(),
