@@ -40,12 +40,6 @@ test('Model can be build', function (): void {
                 'unique' => false,
                 'exclude_originals' => true,
                 'frequency_precision' => 7,
-                'limits' =>
-                    [
-                        'elements' => 500,
-                        'first_elements' => 500,
-                        'sentence_elements' => 500,
-                    ],
                 'tokenizer' =>
                     [
                         'word_filters' =>

@@ -24,10 +24,6 @@ final class Config
     public int $frequencyPrecision = 7;
     public int $sentenceElements = 5;
 
-    public int $elementsLimit                       = 500;
-    public int $firstElementsLimit                  = 500;
-    public int $sentenceElementsLimit               = 500;
-
     // endregion
 
     // region Public Methods
@@ -47,12 +43,7 @@ final class Config
             'unique'              => $this->unique,
             'exclude_originals'   => $this->excludeOriginals,
             'frequency_precision' => $this->frequencyPrecision,
-            'limits' => [
-                'elements'          => $this->elementsLimit,
-                'first_elements'    => $this->firstElementsLimit,
-                'sentence_elements' => $this->sentenceElementsLimit,
-            ],
-            'tokenizer' => $this->tokenizer->toArray(),
+            'tokenizer'           => $this->tokenizer->toArray(),
         ];
     }
 
@@ -121,52 +112,6 @@ final class Config
         }
 
         $this->sentenceElements = $sentenceElements;
-
-        return $this;
-    }
-
-    public function limit(int $limit): Config
-    {
-        if ($limit < 1) {
-            throw new RuntimeException('The $limit must be greater than 0');
-        }
-
-        $this->elementsLimit($limit);
-        $this->firstElementsLimit($limit);
-        $this->sentenceElementsLimit($limit);
-
-        return $this;
-    }
-
-    public function elementsLimit(int $elementsLimit): Config
-    {
-        if ($elementsLimit < 1) {
-            throw new RuntimeException('The $elementsLimit must be greater than 0');
-        }
-
-        $this->elementsLimit = $elementsLimit;
-
-        return $this;
-    }
-
-    public function firstElementsLimit(int $firstElementsLimit): Config
-    {
-        if ($firstElementsLimit < 1) {
-            throw new RuntimeException('The $firstElementsLimit must be greater than 0');
-        }
-
-        $this->firstElementsLimit = $firstElementsLimit;
-
-        return $this;
-    }
-
-    public function sentenceElementsLimit(int $sentenceElementsLimit): Config
-    {
-        if ($sentenceElementsLimit < 1) {
-            throw new RuntimeException('The $sentenceElementsLimit must be greater than 0');
-        }
-
-        $this->sentenceElementsLimit = $sentenceElementsLimit;
 
         return $this;
     }
