@@ -133,12 +133,7 @@ final class Config
 
         $this->elementsLimit($limit);
         $this->firstElementsLimit($limit);
-        $this->firstElementOfSentenceLimit($limit);
-        $this->secondElementOfSentenceLimit($limit);
-        $this->thirdElementOfSentenceLimit($limit);
-        $this->lastElementOfSentenceLimit($limit);
-        $this->secondToLastElementOfSentenceLimit($limit);
-        $this->thirdToLastElementOfSentenceLimit($limit);
+        $this->sentenceElementsLimit($limit);
 
         return $this;
     }
