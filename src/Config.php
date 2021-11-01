@@ -22,15 +22,11 @@ final class Config
     public bool $unique            = false;
     public bool $excludeOriginals  = false;
     public int $frequencyPrecision = 7;
+    public int $sentenceElements = 5;
 
     public int $elementsLimit                       = 500;
     public int $firstElementsLimit                  = 500;
-    public int $firstElementOfSentenceLimit         = 500;
-    public int $secondElementOfSentenceLimit        = 500;
-    public int $thirdElementOfSentenceLimit         = 500;
-    public int $lastElementOfSentenceLimit          = 500;
-    public int $secondToLastElementOfSentenceLimit  = 500;
-    public int $thirdToLastElementOfSentenceLimit   = 500;
+    public int $sentenceElementsLimit               = 500;
 
     // endregion
 
@@ -51,15 +47,10 @@ final class Config
             'unique'              => $this->unique,
             'exclude_originals'   => $this->excludeOriginals,
             'frequency_precision' => $this->frequencyPrecision,
-            'limits'              => [
-                'elements'                           => $this->elementsLimit,
-                'first_elements'                     => $this->firstElementsLimit,
-                'first_element_of_sentence'          => $this->firstElementOfSentenceLimit,
-                'second_element_of_sentence'         => $this->secondElementOfSentenceLimit,
-                'third_element_of_sentence'          => $this->thirdElementOfSentenceLimit,
-                'last_element_of_sentence'           => $this->lastElementOfSentenceLimit,
-                'second_to_last_element_of_sentence' => $this->secondToLastElementOfSentenceLimit,
-                'third_to_last_element_of_sentence'  => $this->thirdToLastElementOfSentenceLimit,
+            'limits' => [
+                'elements'          => $this->elementsLimit,
+                'first_elements'    => $this->firstElementsLimit,
+                'sentence_elements' => $this->sentenceElementsLimit,
             ],
             'tokenizer' => $this->tokenizer->toArray(),
         ];
@@ -123,6 +114,17 @@ final class Config
         return $this;
     }
 
+    public function sentenceElements(int $sentenceElements): Config
+    {
+        if ($sentenceElements < 0) {
+            throw new RuntimeException('The $sentenceElements must be greater than or equal to 0');
+        }
+
+        $this->sentenceElements = $sentenceElements;
+
+        return $this;
+    }
+
     public function limit(int $limit): Config
     {
         if ($limit < 1) {
@@ -163,68 +165,13 @@ final class Config
         return $this;
     }
 
-    public function firstElementOfSentenceLimit(int $firstElementOfSentenceLimit): Config
+    public function sentenceElementsLimit(int $sentenceElementsLimit): Config
     {
-        if ($firstElementOfSentenceLimit < 1) {
-            throw new RuntimeException('The $firstElementOfSentenceLimit must be greater than 0');
+        if ($sentenceElementsLimit < 1) {
+            throw new RuntimeException('The $sentenceElementsLimit must be greater than 0');
         }
 
-        $this->firstElementOfSentenceLimit = $firstElementOfSentenceLimit;
-
-        return $this;
-    }
-
-    public function secondElementOfSentenceLimit(int $secondElementOfSentenceLimit): Config
-    {
-        if ($secondElementOfSentenceLimit < 1) {
-            throw new RuntimeException('The $secondElementOfSentenceLimit must be greater than 0');
-        }
-
-        $this->secondElementOfSentenceLimit = $secondElementOfSentenceLimit;
-
-        return $this;
-    }
-
-    public function thirdElementOfSentenceLimit(int $thirdElementOfSentenceLimit): Config
-    {
-        if ($thirdElementOfSentenceLimit < 1) {
-            throw new RuntimeException('The $thirdElementOfSentenceLimit must be greater than 0');
-        }
-
-        $this->thirdElementOfSentenceLimit = $thirdElementOfSentenceLimit;
-
-        return $this;
-    }
-
-    public function lastElementOfSentenceLimit(int $lastElementOfSentenceLimit): Config
-    {
-        if ($lastElementOfSentenceLimit < 1) {
-            throw new RuntimeException('The $lastElementOfSentenceLimit must be greater than 0');
-        }
-
-        $this->lastElementOfSentenceLimit = $lastElementOfSentenceLimit;
-
-        return $this;
-    }
-
-    public function secondToLastElementOfSentenceLimit(int $secondToLastElementOfSentenceLimit): Config
-    {
-        if ($secondToLastElementOfSentenceLimit < 1) {
-            throw new RuntimeException('The $secondToLastElementOfSentenceLimit must be greater than 0');
-        }
-
-        $this->secondToLastElementOfSentenceLimit = $secondToLastElementOfSentenceLimit;
-
-        return $this;
-    }
-
-    public function thirdToLastElementOfSentenceLimit(int $thirdToLastElementOfSentenceLimit): Config
-    {
-        if ($thirdToLastElementOfSentenceLimit < 1) {
-            throw new RuntimeException('The $thirdToLastElementOfSentenceLimit must be greater than 0');
-        }
-
-        $this->thirdToLastElementOfSentenceLimit = $thirdToLastElementOfSentenceLimit;
+        $this->sentenceElementsLimit = $sentenceElementsLimit;
 
         return $this;
     }

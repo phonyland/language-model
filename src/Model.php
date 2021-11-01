@@ -17,26 +17,11 @@ final class Model
     /** @var array<string, float> */
     public array $firstElements = [];
 
+    /** @var array<array<string, float>> */
+    public array $sentenceElements = [];
+
     /** @var array<string> */
     public array $excluded = [];
-
-    /** @var array<string, float> */
-    public array $firstElementOfSentence = [];
-
-    /** @var array<string, float> */
-    public array $secondElementOfSentence = [];
-
-    /** @var array<string, float> */
-    public array $thirdElementOfSentence = [];
-
-    /** @var array<string, float> */
-    public array $lastElementOfSentence = [];
-
-    /** @var array<string, float> */
-    public array $secondToLastElementOfSentence = [];
-
-    /** @var array<string, float> */
-    public array $thirdToLastElementOfSentence = [];
 
     public function __construct(string $name)
     {
@@ -70,29 +55,21 @@ final class Model
                     if ($i === 0) {
                         NGramCount::elementOnArray($ngram, $this->firstElements);
 
-                        if ($orderInSentence === 0) {
-                            NGramCount::elementOnArray($ngram, $this->firstElementOfSentence);
+                        if ($numberOfWordsInSentence - 1 >= $orderInSentence && $orderInSentence <= ($this->config->sentenceElements - 1)) {
+                            if (!isset($this->sentenceElements[$orderInSentence + 1])) {
+                                $this->sentenceElements[$orderInSentence + 1] = [];
+                            }
+                            NGramCount::elementOnArray($ngram, $this->sentenceElements[$orderInSentence + 1]);
                         }
 
-                        if ($orderInSentence === 1 && $numberOfWordsInSentence >= 2) {
-                            NGramCount::elementOnArray($ngram, $this->secondElementOfSentence);
+                        $positionFromLast = ($numberOfWordsInSentence - 1) - $orderInSentence;
+                        if ($positionFromLast <= ($this->config->sentenceElements - 1) && $positionFromLast >= 0) {
+                            if (!isset($this->sentenceElements[($positionFromLast + 1) * -1])) {
+                                $this->sentenceElements[($positionFromLast + 1) * -1] = [];
+                            }
+                            NGramCount::elementOnArray($ngram, $this->sentenceElements[($positionFromLast + 1) * -1]);
                         }
 
-                        if ($orderInSentence === 2 && $numberOfWordsInSentence >= 3) {
-                            NGramCount::elementOnArray($ngram, $this->thirdElementOfSentence);
-                        }
-
-                        if (($numberOfWordsInSentence - 1) === $orderInSentence && $numberOfWordsInSentence >= 2) {
-                            NGramCount::elementOnArray($ngram, $this->lastElementOfSentence);
-                        }
-
-                        if (($numberOfWordsInSentence - 2) === $orderInSentence && $numberOfWordsInSentence >= 3) {
-                            NGramCount::elementOnArray($ngram, $this->secondToLastElementOfSentence);
-                        }
-
-                        if (($numberOfWordsInSentence - 3) === $orderInSentence && $numberOfWordsInSentence >= 4) {
-                            NGramCount::elementOnArray($ngram, $this->thirdToLastElementOfSentence);
-                        }
                     }
 
                     if ($previousElement !== null) {
@@ -131,13 +108,13 @@ final class Model
             ];
         }
 
+        // Calculate first elements frequency
         NGramFrequency::frequencyFromCount($this->firstElements);
-        NGramFrequency::frequencyFromCount($this->firstElementOfSentence);
-        NGramFrequency::frequencyFromCount($this->secondElementOfSentence);
-        NGramFrequency::frequencyFromCount($this->thirdElementOfSentence);
-        NGramFrequency::frequencyFromCount($this->lastElementOfSentence);
-        NGramFrequency::frequencyFromCount($this->secondToLastElementOfSentence);
-        NGramFrequency::frequencyFromCount($this->thirdToLastElementOfSentence);
+
+        // Calculate sentence elements frequency
+        foreach ($this->sentenceElements as $index => $sentenceElement) {
+            NGramFrequency::frequencyFromCount($this->sentenceElements[$index]);
+        }
     }
 
     public function toArray(): array
@@ -145,14 +122,9 @@ final class Model
         return [
             'config'   => $this->config->toArray(),
             'data'     => [
-                'elements'                           => $this->elements,
-                'first_elements'                     => $this->firstElements,
-                'first_element_of_sentence'          => $this->firstElementOfSentence,
-                'second_element_of_sentence'         => $this->secondElementOfSentence,
-                'third_element_of_sentence'          => $this->thirdElementOfSentence,
-                'last_element_of_sentence'           => $this->lastElementOfSentence,
-                'second_to_last_element_of_sentence' => $this->secondToLastElementOfSentence,
-                'third_to_last_element_of_sentence'  => $this->thirdToLastElementOfSentence,
+                'elements'          => $this->elements,
+                'first_elements'    => $this->firstElements,
+                'sentence_elements' => $this->sentenceElements,
             ],
             'excluded' => $this->excluded,
         ];
