@@ -89,8 +89,10 @@ final class Model
 
     public function calculate(): void
     {
+        // Flatten exluded word arrays
         $this->excluded = array_merge(...$this->excluded);
 
+        // Calculate element frequencies
         $nGramKeys     = array_keys($this->elements);
         $nGramKeyCount = count($nGramKeys);
 
