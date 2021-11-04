@@ -23,6 +23,9 @@ final class Model
     /** @var array<int, float> */
     public array $wordLengths = [];
 
+    /** @var array<int, float> */
+    public array $sentenceLengths = [];
+
     /** @var array<string> */
     public array $excluded = [];
 
@@ -35,13 +38,13 @@ final class Model
     {
         foreach ($words as $word) {
             $wordLength = mb_strlen($word);
-
-            if (!isset($this->wordLengths[$wordLength])) {
-                $this->wordLengths[$wordLength] = 1;
-            } else {
-                $this->wordLengths[$wordLength]++;
-            }
+            NGramCount::elementOnArray((string) $wordLength, $this->wordLengths);
         }
+    }
+
+    private function calculateSentenceLenghts(int $lenght): void
+    {
+        NGramCount::elementOnArray((string)$lenght, $this->sentenceLengths);
     }
 
     public function feed(string $text): void
@@ -50,6 +53,7 @@ final class Model
 
         foreach ($tokenizedSentences as $sentence) {
             $this->calculateWordLenghts($sentence);
+            $this->calculateSentenceLenghts(count($sentence));
 
             if ($this->config->excludeOriginals === true) {
                 $this->excluded[] = $sentence;
@@ -107,12 +111,17 @@ final class Model
 
     public function calculate(): void
     {
-        // Flatten exluded word arrays
+        // Flatten exluded word arrays and sort
         $this->excluded = array_merge(...$this->excluded);
+        sort($this->excluded);
 
         // Calculate and sort word lenght frequencies
         NGramFrequency::frequencyFromCount($this->wordLengths);
         arsort($this->wordLengths);
+
+        // Calculate and sort sentence lenght frequencies
+        NGramFrequency::frequencyFromCount($this->sentenceLengths);
+        arsort($this->sentenceLengths);
 
         // Calculate element frequencies
         $nGramKeys     = array_keys($this->elements);
@@ -151,7 +160,8 @@ final class Model
                 'sentence_elements' => $this->sentenceElements,
             ],
             'statistics' => [
-                'word_lengths' => $this->wordLengths,
+                'word_lengths'     => $this->wordLengths,
+                'sentence_lengths' => $this->sentenceLengths,
             ],
             'excluded' => $this->excluded,
         ];
