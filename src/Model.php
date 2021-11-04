@@ -20,6 +20,9 @@ final class Model
     /** @var array<array<string, float>> */
     public array $sentenceElements = [];
 
+    /** @var array<int, float> */
+    public array $wordLengths = [];
+
     /** @var array<string> */
     public array $excluded = [];
 
@@ -28,11 +31,26 @@ final class Model
         $this->config = new Config($name);
     }
 
+    private function calculateWordLenghts(array $words): void
+    {
+        foreach ($words as $word) {
+            $wordLength = mb_strlen($word);
+
+            if (!isset($this->wordLengths[$wordLength])) {
+                $this->wordLengths[$wordLength] = 1;
+            } else {
+                $this->wordLengths[$wordLength]++;
+            }
+        }
+    }
+
     public function feed(string $text): void
     {
         $tokenizedSentences = $this->config->tokenizer->tokenizeBySentences($text);
 
         foreach ($tokenizedSentences as $sentence) {
+            $this->calculateWordLenghts($sentence);
+
             if ($this->config->excludeOriginals === true) {
                 $this->excluded[] = $sentence;
             }
@@ -92,6 +110,10 @@ final class Model
         // Flatten exluded word arrays
         $this->excluded = array_merge(...$this->excluded);
 
+        // Calculate and sort word lenght frequencies
+        NGramFrequency::frequencyFromCount($this->wordLengths);
+        arsort($this->wordLengths);
+
         // Calculate element frequencies
         $nGramKeys     = array_keys($this->elements);
         $nGramKeyCount = count($nGramKeys);
@@ -127,6 +149,9 @@ final class Model
                 'elements'          => $this->elements,
                 'first_elements'    => $this->firstElements,
                 'sentence_elements' => $this->sentenceElements,
+            ],
+            'statistics' => [
+                'word_lengths' => $this->wordLengths,
             ],
             'excluded' => $this->excluded,
         ];
