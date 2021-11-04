@@ -77,7 +77,7 @@ final class Model
                     if ($i === 0) {
                         NGramCount::elementOnArray($ngram, $this->firstElements);
 
-                        if ($numberOfWordsInSentence - 1 >= $orderInSentence && $orderInSentence <= ($this->config->sentenceElements - 1)) {
+                        if ($numberOfWordsInSentence - 1 >= $orderInSentence && $orderInSentence <= ($this->config->numberOfSentenceElements - 1)) {
                             if (!isset($this->sentenceElements[$orderInSentence + 1])) {
                                 $this->sentenceElements[$orderInSentence + 1] = [];
                             }
@@ -85,7 +85,7 @@ final class Model
                         }
 
                         $positionFromLast = ($numberOfWordsInSentence - 1) - $orderInSentence;
-                        if ($positionFromLast <= ($this->config->sentenceElements - 1) && $positionFromLast >= 0) {
+                        if ($positionFromLast <= ($this->config->numberOfSentenceElements - 1) && $positionFromLast >= 0) {
                             if (!isset($this->sentenceElements[($positionFromLast + 1) * -1])) {
                                 $this->sentenceElements[($positionFromLast + 1) * -1] = [];
                             }
