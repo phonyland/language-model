@@ -34,10 +34,12 @@ final class Element
     public function calculateChildrenFrequency(): void
     {
         NGramFrequency::frequencyFromCount($this->children);
+        arsort($this->children);
     }
 
     public function calculateLastChildrenFrequency(): void
     {
         NGramFrequency::frequencyFromCount($this->lastChildren);
+        arsort($this->lastChildren);
     }
 }
