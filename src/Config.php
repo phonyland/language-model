@@ -22,7 +22,7 @@ final class Config
     public bool $unique            = false;
     public bool $excludeOriginals  = false;
     public int $frequencyPrecision = 7;
-    public int $sentenceElements = 5;
+    public int $numberOfSentenceElements = 5;
 
     // endregion
 
@@ -37,13 +37,14 @@ final class Config
     public function toArray(): array
     {
         return [
-            'name'                => $this->name,
-            'n'                   => $this->n,
-            'min_lenght'          => $this->minLenght,
-            'unique'              => $this->unique,
-            'exclude_originals'   => $this->excludeOriginals,
-            'frequency_precision' => $this->frequencyPrecision,
-            'tokenizer'           => $this->tokenizer->toArray(),
+            'name'                        => $this->name,
+            'n'                           => $this->n,
+            'min_lenght'                  => $this->minLenght,
+            'unique'                      => $this->unique,
+            'exclude_originals'           => $this->excludeOriginals,
+            'frequency_precision'         => $this->frequencyPrecision,
+            'number_of_sentence_elements' => $this->numberOfSentenceElements,
+            'tokenizer'                   => $this->tokenizer->toArray(),
         ];
     }
 
@@ -105,13 +106,13 @@ final class Config
         return $this;
     }
 
-    public function sentenceElements(int $sentenceElements): Config
+    public function numberOfSentenceElements(int $numberOfSentenceElements): Config
     {
-        if ($sentenceElements < 0) {
-            throw new RuntimeException('The $sentenceElements must be greater than or equal to 0');
+        if ($numberOfSentenceElements < 0) {
+            throw new RuntimeException('The $numberOfSentenceElements must be greater than or equal to 0');
         }
 
-        $this->sentenceElements = $sentenceElements;
+        $this->numberOfSentenceElements = $numberOfSentenceElements;
 
         return $this;
     }
