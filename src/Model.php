@@ -141,12 +141,14 @@ final class Model
             ];
         }
 
-        // Calculate first elements frequency
+        // Calculate and sort first elements frequency
         NGramFrequency::frequencyFromCount($this->firstElements);
+        arsort($this->firstElements);
 
-        // Calculate sentence elements frequency
+        // Calculate and sort sentence elements frequency
         foreach ($this->sentenceElements as $index => $sentenceElement) {
             NGramFrequency::frequencyFromCount($this->sentenceElements[$index]);
+            arsort($this->sentenceElements[$index]);
         }
     }
 
