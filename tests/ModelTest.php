@@ -3,21 +3,24 @@
 declare(strict_types=1);
 
 use Phonyland\LanguageModel\Model;
+use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
 
 test('Model can be build', function (): void {
     $model = new Model('Test Model');
-
-    $model->config->n(2)
-                  ->minLenght(2)
-                  ->unique(false)
-                  ->excludeOriginals(true)
-                  ->frequencyPrecision(7)
-                  ->numberOfSentenceElements(3)
-        ->tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-                   ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
-                   ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
-                   ->toLowercase();
+    $model->config
+        ->n(2)
+        ->minLenght(2)
+        ->unique(false)
+        ->excludeOriginals(true)
+        ->frequencyPrecision(7)
+        ->numberOfSentenceElements(3)
+        ->tokenizer((new Tokenizer())
+            ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+            ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
+            ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
+            ->toLowercase()
+        );
 
     $model->feed('The quick brown fox jumps over the lazy dog.');
     $model->feed('Jived fox nymph grabs quick waltz.');
@@ -32,26 +35,26 @@ test('Model can be build', function (): void {
 
     $model = $model->toArray();
     $expected = [
-        'config' =>
+        'config'     =>
             [
-                'name' => 'Test Model',
-                'n' => 2,
-                'min_lenght' => 2,
-                'unique' => false,
-                'exclude_originals' => true,
-                'frequency_precision' => 7,
+                'name'                        => 'Test Model',
+                'n'                           => 2,
+                'min_lenght'                  => 2,
+                'unique'                      => false,
+                'exclude_originals'           => true,
+                'frequency_precision'         => 7,
                 'number_of_sentence_elements' => 3,
-                'tokenizer' =>
+                'tokenizer'                   =>
                     [
-                        'word_filters' =>
+                        'word_filters'                 =>
                             [
                                 0 =>
                                     [
-                                        'pattern' => '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/',
+                                        'pattern'     => '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/',
                                         'replacement' => '',
                                     ],
                             ],
-                        'word_separation_patterns' =>
+                        'word_separation_patterns'     =>
                             [
                                 0 => '\\s',
                             ],
@@ -64,12 +67,12 @@ test('Model can be build', function (): void {
                                 4 => ';',
                                 5 => '\\n',
                             ],
-                        'to_lowercase' => true,
+                        'to_lowercase'                 => true,
                     ],
             ],
-        'data' =>
+        'data'       =>
             [
-                'elements' =>
+                'elements'          =>
                     [
                         'th' =>
                             [
@@ -833,7 +836,7 @@ test('Model can be build', function (): void {
                                 1 => 0,
                             ],
                     ],
-                'first_elements' =>
+                'first_elements'    =>
                     [
                         'qu' => 0.125,
                         'ju' => 0.08928571428571429,
@@ -871,7 +874,7 @@ test('Model can be build', function (): void {
                     ],
                 'sentence_elements' =>
                     [
-                        1 =>
+                        1  =>
                             [
                                 'th' => 0.25,
                                 'ji' => 0.125,
@@ -881,7 +884,7 @@ test('Model can be build', function (): void {
                                 'ja' => 0.125,
                                 'pa' => 0.125,
                             ],
-                        2 =>
+                        2  =>
                             [
                                 'qu' => 0.125,
                                 'fo' => 0.125,
@@ -892,7 +895,7 @@ test('Model can be build', function (): void {
                                 'lo' => 0.125,
                                 'my' => 0.125,
                             ],
-                        3 =>
+                        3  =>
                             [
                                 'qu' => 0.25,
                                 'bo' => 0.25,
@@ -936,7 +939,7 @@ test('Model can be build', function (): void {
             ],
         'statistics' =>
             [
-                'word_lengths' =>
+                'word_lengths'     =>
                     [
                         5 => 0.26785714285714285,
                         4 => 0.23214285714285715,
@@ -954,18 +957,18 @@ test('Model can be build', function (): void {
                         8 => 0.125,
                     ],
             ],
-        'excluded' =>
+        'excluded'   =>
             [
-                0 => 'big',
-                1 => 'black',
-                2 => 'box',
-                3 => 'boxing',
-                4 => 'brown',
-                5 => 'daft',
-                6 => 'dog',
-                7 => 'dozen',
-                8 => 'dwarf',
-                9 => 'five',
+                0  => 'big',
+                1  => 'black',
+                2  => 'box',
+                3  => 'boxing',
+                4  => 'brown',
+                5  => 'daft',
+                6  => 'dog',
+                7  => 'dozen',
+                8  => 'dwarf',
+                9  => 'five',
                 10 => 'five',
                 11 => 'fox',
                 12 => 'fox',
