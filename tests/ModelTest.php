@@ -6,7 +6,7 @@ use Phonyland\LanguageModel\Model;
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
 
-test('Model can be build', function (): void {
+test('Model can be build with count', function (): void {
     $model = new Model('Test Model');
     $model->config
         ->n(2)
@@ -35,26 +35,26 @@ test('Model can be build', function (): void {
 
     $model = $model->toArray();
     $expected = [
-        'config'     =>
+        'config' =>
             [
-                'name'                        => 'Test Model',
-                'n'                           => 2,
-                'min_lenght'                  => 2,
-                'unique'                      => false,
-                'exclude_originals'           => true,
-                'frequency_precision'         => 7,
+                'name' => 'Test Model',
+                'n' => 2,
+                'min_lenght' => 2,
+                'unique' => false,
+                'exclude_originals' => true,
+                'frequency_precision' => 7,
                 'number_of_sentence_elements' => 3,
-                'tokenizer'                   =>
+                'tokenizer' =>
                     [
-                        'word_filters'                 =>
+                        'word_filters' =>
                             [
                                 0 =>
                                     [
-                                        'pattern'     => '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/',
+                                        'pattern' => '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/',
                                         'replacement' => '',
                                     ],
                             ],
-                        'word_separation_patterns'     =>
+                        'word_separation_patterns' =>
                             [
                                 0 => '\\s',
                             ],
@@ -67,19 +67,19 @@ test('Model can be build', function (): void {
                                 4 => ';',
                                 5 => '\\n',
                             ],
-                        'to_lowercase'                 => true,
+                        'to_lowercase' => true,
                     ],
             ],
-        'data'       =>
+        'data' =>
             [
-                'elements'          =>
+                'elements' =>
                     [
                         'th' =>
                             [
                                 0 => 0,
                                 1 =>
                                     [
-                                        'he' => 1,
+                                        'he' => 3,
                                     ],
                             ],
                         'he' =>
@@ -91,9 +91,9 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'ui' => 0.625,
-                                        'ua' => 0.25,
-                                        'uo' => 0.125,
+                                        'ui' => 5,
+                                        'ua' => 2,
+                                        'uo' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -101,7 +101,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'ic' => 1,
+                                        'ic' => 4,
                                     ],
                                 1 =>
                                     [
@@ -116,15 +116,15 @@ test('Model can be build', function (): void {
                                     ],
                                 1 =>
                                     [
-                                        'ck' => 1,
+                                        'ck' => 3,
                                     ],
                             ],
                         'ck' =>
                             [
                                 0 =>
                                     [
-                                        'kl' => 0.5,
-                                        'kd' => 0.5,
+                                        'kl' => 1,
+                                        'kd' => 1,
                                     ],
                                 1 =>
                                     [
@@ -135,8 +135,8 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'ro' => 0.5,
-                                        'ra' => 0.5,
+                                        'ro' => 1,
+                                        'ra' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -166,7 +166,7 @@ test('Model can be build', function (): void {
                                 0 => 0,
                                 1 =>
                                     [
-                                        'ox' => 1,
+                                        'ox' => 2,
                                     ],
                             ],
                         'ox' =>
@@ -181,9 +181,9 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'um' => 0.6,
-                                        'ud' => 0.2,
-                                        'ug' => 0.2,
+                                        'um' => 3,
+                                        'ud' => 1,
+                                        'ug' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -195,7 +195,7 @@ test('Model can be build', function (): void {
                                     ],
                                 1 =>
                                     [
-                                        'mp' => 1,
+                                        'mp' => 2,
                                     ],
                             ],
                         'mp' =>
@@ -203,8 +203,8 @@ test('Model can be build', function (): void {
                                 0 => 0,
                                 1 =>
                                     [
-                                        'ph' => 0.6666666666666666,
-                                        'ps' => 0.3333333333333333,
+                                        'ph' => 2,
+                                        'ps' => 1,
                                     ],
                             ],
                         'ps' =>
@@ -231,9 +231,9 @@ test('Model can be build', function (): void {
                                     ],
                                 1 =>
                                     [
-                                        'er' => 0.3333333333333333,
-                                        'ed' => 0.3333333333333333,
-                                        'ex' => 0.3333333333333333,
+                                        'er' => 1,
+                                        'ed' => 1,
+                                        'ex' => 1,
                                     ],
                             ],
                         'er' =>
@@ -245,8 +245,8 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'az' => 0.5,
-                                        'ac' => 0.5,
+                                        'az' => 1,
+                                        'ac' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -295,7 +295,7 @@ test('Model can be build', function (): void {
                                     ],
                                 1 =>
                                     [
-                                        've' => 1,
+                                        've' => 2,
                                     ],
                             ],
                         'ed' =>
@@ -307,7 +307,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'ym' => 1,
+                                        'ym' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -315,7 +315,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'mp' => 1,
+                                        'mp' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -323,7 +323,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'hi' => 1,
+                                        'hi' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -363,8 +363,8 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'al' => 0.5,
-                                        'ar' => 0.5,
+                                        'al' => 1,
+                                        'ar' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -470,8 +470,8 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'rt' => 0.6666666666666666,
-                                        'rd' => 0.3333333333333333,
+                                        'rt' => 2,
+                                        'rd' => 1,
                                     ],
                                 1 =>
                                     [
@@ -487,7 +487,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'ph' => 1,
+                                        'ph' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -495,7 +495,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'in' => 1,
+                                        'in' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -507,8 +507,8 @@ test('Model can be build', function (): void {
                                     ],
                                 1 =>
                                     [
-                                        'nx' => 0.6666666666666666,
-                                        'ng' => 0.3333333333333333,
+                                        'nx' => 2,
+                                        'ng' => 1,
                                     ],
                             ],
                         'nx' =>
@@ -537,14 +537,14 @@ test('Model can be build', function (): void {
                                     ],
                                 1 =>
                                     [
-                                        'ck' => 1,
+                                        'ck' => 2,
                                     ],
                             ],
                         'ua' =>
                             [
                                 0 =>
                                     [
-                                        'ar' => 1,
+                                        'ar' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -553,7 +553,7 @@ test('Model can be build', function (): void {
                                 0 => 0,
                                 1 =>
                                     [
-                                        'tz' => 1,
+                                        'tz' => 2,
                                     ],
                             ],
                         'ud' =>
@@ -602,7 +602,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'in' => 1,
+                                        'in' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -623,8 +623,8 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'af' => 0.5,
-                                        'aw' => 0.5,
+                                        'af' => 1,
+                                        'aw' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -669,7 +669,7 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'iv' => 1,
+                                        'iv' => 2,
                                     ],
                                 1 => 0,
                             ],
@@ -688,8 +688,8 @@ test('Model can be build', function (): void {
                             [
                                 0 =>
                                     [
-                                        'iz' => 0.5,
-                                        'it' => 0.5,
+                                        'iz' => 1,
+                                        'it' => 1,
                                     ],
                                 1 => 0,
                             ],
@@ -836,139 +836,139 @@ test('Model can be build', function (): void {
                                 1 => 0,
                             ],
                     ],
-                'first_elements'    =>
+                'first_elements' =>
                     [
-                        'qu' => 0.125,
-                        'ju' => 0.08928571428571429,
-                        'th' => 0.05357142857142857,
-                        'my' => 0.05357142857142857,
-                        'fo' => 0.03571428571428571,
-                        'do' => 0.03571428571428571,
-                        'ny' => 0.03571428571428571,
-                        've' => 0.03571428571428571,
-                        'sp' => 0.03571428571428571,
-                        'of' => 0.03571428571428571,
-                        'fi' => 0.03571428571428571,
-                        'bo' => 0.03571428571428571,
-                        'wi' => 0.03571428571428571,
-                        'br' => 0.017857142857142856,
-                        'ov' => 0.017857142857142856,
-                        'la' => 0.017857142857142856,
-                        'ji' => 0.017857142857142856,
-                        'gr' => 0.017857142857142856,
-                        'wa' => 0.017857142857142856,
-                        'gl' => 0.017857142857142856,
-                        'jo' => 0.017857142857142856,
-                        'to' => 0.017857142857142856,
-                        'dw' => 0.017857142857142856,
-                        'bl' => 0.017857142857142856,
-                        'vo' => 0.017857142857142856,
-                        'ho' => 0.017857142857142856,
-                        'da' => 0.017857142857142856,
-                        'ze' => 0.017857142857142856,
-                        'ja' => 0.017857142857142856,
-                        'lo' => 0.017857142857142856,
-                        'bi' => 0.017857142857142856,
-                        'pa' => 0.017857142857142856,
-                        'li' => 0.017857142857142856,
+                        'qu' => 7,
+                        'ju' => 5,
+                        'th' => 3,
+                        'my' => 3,
+                        'fo' => 2,
+                        'do' => 2,
+                        'ny' => 2,
+                        've' => 2,
+                        'sp' => 2,
+                        'of' => 2,
+                        'fi' => 2,
+                        'bo' => 2,
+                        'wi' => 2,
+                        'br' => 1,
+                        'ov' => 1,
+                        'la' => 1,
+                        'ji' => 1,
+                        'gr' => 1,
+                        'wa' => 1,
+                        'gl' => 1,
+                        'jo' => 1,
+                        'to' => 1,
+                        'dw' => 1,
+                        'bl' => 1,
+                        'vo' => 1,
+                        'ho' => 1,
+                        'da' => 1,
+                        'ze' => 1,
+                        'ja' => 1,
+                        'lo' => 1,
+                        'bi' => 1,
+                        'pa' => 1,
+                        'li' => 1,
                     ],
                 'sentence_elements' =>
                     [
-                        1  =>
+                        1 =>
                             [
-                                'th' => 0.25,
-                                'ji' => 0.125,
-                                'gl' => 0.125,
-                                'sp' => 0.125,
-                                'ho' => 0.125,
-                                'ja' => 0.125,
-                                'pa' => 0.125,
+                                'th' => 2,
+                                'ji' => 1,
+                                'gl' => 1,
+                                'sp' => 1,
+                                'ho' => 1,
+                                'ja' => 1,
+                                'pa' => 1,
                             ],
-                        2  =>
+                        2 =>
                             [
-                                'qu' => 0.125,
-                                'fo' => 0.125,
-                                'jo' => 0.125,
-                                'of' => 0.125,
-                                've' => 0.125,
-                                'fi' => 0.125,
-                                'lo' => 0.125,
-                                'my' => 0.125,
+                                'qu' => 1,
+                                'fo' => 1,
+                                'jo' => 1,
+                                'of' => 1,
+                                've' => 1,
+                                'fi' => 1,
+                                'lo' => 1,
+                                'my' => 1,
                             ],
-                        3  =>
+                        3 =>
                             [
-                                'qu' => 0.25,
-                                'bo' => 0.25,
-                                'br' => 0.125,
-                                'ny' => 0.125,
-                                'bl' => 0.125,
-                                'my' => 0.125,
+                                'qu' => 2,
+                                'bo' => 2,
+                                'br' => 1,
+                                'ny' => 1,
+                                'bl' => 1,
+                                'my' => 1,
                             ],
                         -3 =>
                             [
-                                'th' => 0.125,
-                                'gr' => 0.125,
-                                'to' => 0.125,
-                                'ju' => 0.125,
-                                'da' => 0.125,
-                                'wi' => 0.125,
-                                'sp' => 0.125,
-                                'do' => 0.125,
+                                'th' => 1,
+                                'gr' => 1,
+                                'to' => 1,
+                                'ju' => 1,
+                                'da' => 1,
+                                'wi' => 1,
+                                'sp' => 1,
+                                'do' => 1,
                             ],
                         -2 =>
                             [
-                                'la' => 0.125,
-                                'qu' => 0.125,
-                                've' => 0.125,
-                                'my' => 0.125,
-                                'ze' => 0.125,
-                                'ju' => 0.125,
-                                'of' => 0.125,
-                                'li' => 0.125,
+                                'la' => 1,
+                                'qu' => 1,
+                                've' => 1,
+                                'my' => 1,
+                                'ze' => 1,
+                                'ju' => 1,
+                                'of' => 1,
+                                'li' => 1,
                             ],
                         -1 =>
                             [
-                                'ju' => 0.25,
-                                'qu' => 0.25,
-                                'do' => 0.125,
-                                'wa' => 0.125,
-                                'dw' => 0.125,
-                                'vo' => 0.125,
+                                'ju' => 2,
+                                'qu' => 2,
+                                'do' => 1,
+                                'wa' => 1,
+                                'dw' => 1,
+                                'vo' => 1,
                             ],
                     ],
             ],
         'statistics' =>
             [
-                'word_lengths'     =>
+                'word_lengths' =>
                     [
-                        5 => 0.26785714285714285,
-                        4 => 0.23214285714285715,
-                        3 => 0.19642857142857142,
-                        6 => 0.125,
-                        2 => 0.10714285714285714,
-                        8 => 0.03571428571428571,
-                        7 => 0.03571428571428571,
+                        5 => 15,
+                        4 => 13,
+                        3 => 11,
+                        6 => 7,
+                        2 => 6,
+                        8 => 2,
+                        7 => 2,
                     ],
                 'sentence_lengths' =>
                     [
-                        6 => 0.375,
-                        7 => 0.375,
-                        9 => 0.125,
-                        8 => 0.125,
+                        6 => 3,
+                        7 => 3,
+                        9 => 1,
+                        8 => 1,
                     ],
             ],
-        'excluded'   =>
+        'excluded' =>
             [
-                0  => 'big',
-                1  => 'black',
-                2  => 'box',
-                3  => 'boxing',
-                4  => 'brown',
-                5  => 'daft',
-                6  => 'dog',
-                7  => 'dozen',
-                8  => 'dwarf',
-                9  => 'five',
+                0 => 'big',
+                1 => 'black',
+                2 => 'box',
+                3 => 'boxing',
+                4 => 'brown',
+                5 => 'daft',
+                6 => 'dog',
+                7 => 'dozen',
+                8 => 'dwarf',
+                9 => 'five',
                 10 => 'five',
                 11 => 'fox',
                 12 => 'fox',

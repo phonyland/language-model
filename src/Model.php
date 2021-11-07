@@ -117,61 +117,13 @@ final class Model
         }
     }
 
-    public function calculateWithFrequencies(): void
+    public function calculate(): void
     {
         // Flatten exluded word arrays and sort
         $this->excluded = array_merge(...$this->excluded);
+
         sort($this->excluded);
-
-        // Calculate and sort word lenght frequencies
-        NGramFrequency::frequencyFromCount($this->wordLengths);
         arsort($this->wordLengths);
-
-        // Calculate and sort sentence lenght frequencies
-        NGramFrequency::frequencyFromCount($this->sentenceLengths);
-        arsort($this->sentenceLengths);
-
-        // Calculate element frequencies
-        $nGramKeys     = array_keys($this->elements);
-        $nGramKeyCount = count($nGramKeys);
-
-        for ($i = 0; $i < $nGramKeyCount; $i++) {
-            $ngram = $nGramKeys[$i];
-            /** @var \Phonyland\LanguageModel\Element $ngramElement */
-            $ngramElement = $this->elements[$ngram];
-
-            $ngramElement->calculateChildrenFrequency();
-            $ngramElement->sortChildrenByCount();
-            $ngramElement->calculateLastChildrenFrequency();
-            $ngramElement->sortLastChildrenByCount();
-
-            $this->elements[$nGramKeys[$i]] = [
-                array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
-                array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
-            ];
-        }
-
-        // Calculate and sort first elements frequency
-        NGramFrequency::frequencyFromCount($this->firstElements);
-        arsort($this->firstElements);
-
-        // Calculate and sort sentence elements frequency
-        foreach ($this->sentenceElements as $index => $sentenceElement) {
-            NGramFrequency::frequencyFromCount($this->sentenceElements[$index]);
-            arsort($this->sentenceElements[$index]);
-        }
-    }
-
-    public function calculateWithCounts(): void
-    {
-        // Flatten exluded word arrays and sort
-        $this->excluded = array_merge(...$this->excluded);
-        sort($this->excluded);
-
-        // Sort word lenght counts
-        arsort($this->wordLengths);
-
-        // sort sentence lenght counts
         arsort($this->sentenceLengths);
 
         // Sort element counts
@@ -211,8 +163,8 @@ final class Model
                 'sentence_elements' => $this->sentenceElements,
             ],
             'statistics' => [
-                'word_lengths'     => $this->wordLengths,
-                'sentence_lengths' => $this->sentenceLengths,
+                'word_lengths'         => $this->wordLengths,
+                'sentence_lengths'     => $this->sentenceLengths,
             ],
             'excluded' => $this->excluded,
         ];
