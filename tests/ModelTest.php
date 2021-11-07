@@ -949,6 +949,7 @@ test('Model can be build with count', function (): void {
                         8 => 2,
                         7 => 2,
                     ],
+                'element_count' => 97,
                 'sentence_lengths' =>
                     [
                         6 => 3,

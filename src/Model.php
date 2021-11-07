@@ -32,6 +32,8 @@ final class Model
     /** @var array<int, float> */
     public array $sentenceLengths = [];
 
+    public int $elementCount;
+    
     // endregion
 
     /** @var array<string> */
@@ -151,6 +153,8 @@ final class Model
         foreach ($this->sentenceElements as $index => $sentenceElement) {
             arsort($this->sentenceElements[$index]);
         }
+
+        $this->elementCount = count($this->elements);
     }
 
     public function toArray(): array
@@ -164,6 +168,7 @@ final class Model
             ],
             'statistics' => [
                 'word_lengths'         => $this->wordLengths,
+                'element_count'        => $this->elementCount,
                 'sentence_lengths'     => $this->sentenceLengths,
             ],
             'excluded' => $this->excluded,
