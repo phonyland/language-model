@@ -11,6 +11,8 @@ final class Model
 {
     public Config $config;
 
+    // region Data Attributes
+
     /** @var array<string, Element> */
     public array $elements = [];
 
@@ -20,11 +22,17 @@ final class Model
     /** @var array<array<string, float>> */
     public array $sentenceElements = [];
 
+    // endregion
+
+    // region Statistic Attributes
+
     /** @var array<int, float> */
     public array $wordLengths = [];
 
     /** @var array<int, float> */
     public array $sentenceLengths = [];
+
+    // endregion
 
     /** @var array<string> */
     public array $excluded = [];
