@@ -117,7 +117,7 @@ final class Model
         }
     }
 
-    public function calculate(): void
+    public function calculateWithFrequencies(): void
     {
         // Flatten exluded word arrays and sort
         $this->excluded = array_merge(...$this->excluded);
@@ -141,7 +141,9 @@ final class Model
             $ngramElement = $this->elements[$ngram];
 
             $ngramElement->calculateChildrenFrequency();
+            $ngramElement->sortChildrenByCount();
             $ngramElement->calculateLastChildrenFrequency();
+            $ngramElement->sortLastChildrenByCount();
 
             $this->elements[$nGramKeys[$i]] = [
                 array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
@@ -156,6 +158,45 @@ final class Model
         // Calculate and sort sentence elements frequency
         foreach ($this->sentenceElements as $index => $sentenceElement) {
             NGramFrequency::frequencyFromCount($this->sentenceElements[$index]);
+            arsort($this->sentenceElements[$index]);
+        }
+    }
+
+    public function calculateWithCounts(): void
+    {
+        // Flatten exluded word arrays and sort
+        $this->excluded = array_merge(...$this->excluded);
+        sort($this->excluded);
+
+        // Sort word lenght counts
+        arsort($this->wordLengths);
+
+        // sort sentence lenght counts
+        arsort($this->sentenceLengths);
+
+        // Sort element counts
+        $nGramKeys     = array_keys($this->elements);
+        $nGramKeyCount = count($nGramKeys);
+
+        for ($i = 0; $i < $nGramKeyCount; $i++) {
+            $ngram = $nGramKeys[$i];
+            /** @var \Phonyland\LanguageModel\Element $ngramElement */
+            $ngramElement = $this->elements[$ngram];
+
+            $ngramElement->sortChildrenByCount();
+            $ngramElement->sortLastChildrenByCount();
+
+            $this->elements[$nGramKeys[$i]] = [
+                array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
+                array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
+            ];
+        }
+
+        // Sort first elements counts
+        arsort($this->firstElements);
+
+        // Sort sentence elements counts
+        foreach ($this->sentenceElements as $index => $sentenceElement) {
             arsort($this->sentenceElements[$index]);
         }
     }
