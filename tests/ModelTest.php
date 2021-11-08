@@ -8,32 +8,31 @@ use Phonyland\NGram\TokenizerFilter;
 
 test('Model can be build with count', function (): void {
     $model = new Model('Test Model');
-    $model->config
-        ->n(2)
-        ->minLenght(2)
-        ->unique(false)
-        ->excludeOriginals(true)
-        ->frequencyPrecision(7)
-        ->numberOfSentenceElements(3)
-        ->tokenizer((new Tokenizer())
-            ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-            ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
-            ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
-            ->toLowercase()
-        );
 
-    $model->feed('The quick brown fox jumps over the lazy dog.');
-    $model->feed('Jived fox nymph grabs quick waltz.');
-    $model->feed('Glib jocks quiz nymph to vex dwarf.');
-    $model->feed('Sphinx of black quartz, judge my vow.');
-    $model->feed('How vexingly quick daft zebras jump!');
-    $model->feed('The five boxing wizards jump quickly.');
-    $model->feed('Jackdaws love my big sphinx of quartz.');
-    $model->feed('Pack my box with five dozen liquor jugs.');
+    $model->config->n(2)
+                  ->minLenght(2)
+                  ->unique(false)
+                  ->excludeOriginals(true)
+                  ->frequencyPrecision(7)
+                  ->numberOfSentenceElements(3)
+                  ->tokenizer((new Tokenizer())
+                      ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+                      ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
+                      ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
+                      ->toLowercase()
+                  );
 
-    $model->calculate();
+    $modelData = $model->feed('The quick brown fox jumps over the lazy dog.')
+                       ->feed('Jived fox nymph grabs quick waltz.')
+                       ->feed('Glib jocks quiz nymph to vex dwarf.')
+                       ->feed('Sphinx of black quartz, judge my vow.')
+                       ->feed('How vexingly quick daft zebras jump!')
+                       ->feed('The five boxing wizards jump quickly.')
+                       ->feed('Jackdaws love my big sphinx of quartz.')
+                       ->feed('Pack my box with five dozen liquor jugs.')
+                       ->calculate()
+                       ->toArray();
 
-    $model = $model->toArray();
     $expected = [
         'config' =>
             [
@@ -74,768 +73,836 @@ test('Model can be build with count', function (): void {
             [
                 'elements' =>
                     [
-                        'th' =>
+                        'ab' =>
                             [
-                                0 => 0,
-                                1 =>
+                                'lc' =>
                                     [
-                                        'he' => 3,
+                                        'bs' => 1,
                                     ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
                             ],
-                        'he' =>
+                        'ac' =>
                             [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'qu' =>
-                            [
-                                0 =>
-                                    [
-                                        'ui' => 5,
-                                        'ua' => 2,
-                                        'uo' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ui' =>
-                            [
-                                0 =>
-                                    [
-                                        'ic' => 4,
-                                    ],
-                                1 =>
-                                    [
-                                        'iz' => 1,
-                                    ],
-                            ],
-                        'ic' =>
-                            [
-                                0 =>
+                                'c' =>
                                     [
                                         'ck' => 1,
                                     ],
-                                1 =>
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
                                     [
-                                        'ck' => 3,
+                                        'ck' => 2,
                                     ],
+                                'lcc' => 1,
+                                'lcwc' => 2,
                             ],
-                        'ck' =>
+                        'af' =>
                             [
-                                0 =>
+                                'lc' =>
                                     [
-                                        'kl' => 1,
-                                        'kd' => 1,
+                                        'ft' => 1,
                                     ],
-                                1 =>
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'al' =>
+                            [
+                                'c' =>
                                     [
-                                        'ks' => 1,
+                                        'lt' => 1,
                                     ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'ar' =>
+                            [
+                                'c' =>
+                                    [
+                                        'rt' => 2,
+                                        'rd' => 1,
+                                    ],
+                                'cc' => 2,
+                                'cwc' => 3,
+                                'lc' =>
+                                    [
+                                        'rf' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'as' =>
+                            [
+                            ],
+                        'aw' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'ws' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'az' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'zy' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'bi' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'ig' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'bl' =>
+                            [
+                                'c' =>
+                                    [
+                                        'la' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'bo' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ox' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'ox' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
                             ],
                         'br' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
                                         'ro' => 1,
                                         'ra' => 1,
                                     ],
-                                1 => 0,
+                                'cc' => 2,
+                                'cwc' => 2,
                             ],
-                        'ro' =>
+                        'bs' =>
                             [
-                                0 =>
+                            ],
+                        'ck' =>
+                            [
+                                'c' =>
                                     [
-                                        'ow' => 1,
+                                        'kl' => 1,
+                                        'kd' => 1,
                                     ],
-                                1 => 0,
-                            ],
-                        'ow' =>
-                            [
-                                0 => 0,
-                                1 =>
+                                'cc' => 2,
+                                'cwc' => 2,
+                                'lc' =>
                                     [
-                                        'wn' => 1,
+                                        'ks' => 1,
                                     ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
                             ],
-                        'wn' =>
+                        'da' =>
                             [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'fo' =>
-                            [
-                                0 => 0,
-                                1 =>
+                                'c' =>
                                     [
-                                        'ox' => 2,
+                                        'af' => 1,
+                                        'aw' => 1,
                                     ],
+                                'cc' => 2,
+                                'cwc' => 2,
                             ],
-                        'ox' =>
+                        'dg' =>
                             [
-                                0 =>
+                                'lc' =>
+                                    [
+                                        'ge' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'do' =>
+                            [
+                                'c' =>
+                                    [
+                                        'oz' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'og' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ds' =>
+                            [
+                            ],
+                        'dw' =>
+                            [
+                                'c' =>
+                                    [
+                                        'wa' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'eb' =>
+                            [
+                                'c' =>
+                                    [
+                                        'br' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'ed' =>
+                            [
+                            ],
+                        'en' =>
+                            [
+                            ],
+                        'er' =>
+                            [
+                            ],
+                        'ex' =>
+                            [
+                                'c' =>
                                     [
                                         'xi' => 1,
                                     ],
-                                1 => 0,
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'fi' =>
+                            [
+                                'c' =>
+                                    [
+                                        'iv' => 2,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 2,
+                            ],
+                        'fo' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'ox' => 2,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 2,
+                            ],
+                        'ft' =>
+                            [
+                            ],
+                        'ge' =>
+                            [
+                            ],
+                        'gl' =>
+                            [
+                                'c' =>
+                                    [
+                                        'li' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'ly' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'gr' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ra' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'gs' =>
+                            [
+                            ],
+                        'he' =>
+                            [
+                            ],
+                        'hi' =>
+                            [
+                                'c' =>
+                                    [
+                                        'in' => 2,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 2,
+                            ],
+                        'ho' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'ow' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ib' =>
+                            [
+                            ],
+                        'ic' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ck' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'ck' => 3,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 3,
+                            ],
+                        'ig' =>
+                            [
+                            ],
+                        'in' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ng' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'nx' => 2,
+                                        'ng' => 1,
+                                    ],
+                                'lcc' => 2,
+                                'lcwc' => 3,
+                            ],
+                        'iq' =>
+                            [
+                                'c' =>
+                                    [
+                                        'qu' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'it' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'th' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'iv' =>
+                            [
+                                'c' =>
+                                    [
+                                        've' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        've' => 2,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 2,
+                            ],
+                        'iz' =>
+                            [
+                                'c' =>
+                                    [
+                                        'za' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'ja' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ac' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'ji' =>
+                            [
+                                'c' =>
+                                    [
+                                        'iv' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'jo' =>
+                            [
+                                'c' =>
+                                    [
+                                        'oc' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
                             ],
                         'ju' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
                                         'um' => 3,
                                         'ud' => 1,
                                         'ug' => 1,
                                     ],
-                                1 => 0,
+                                'cc' => 3,
+                                'cwc' => 5,
                             ],
-                        'um' =>
+                        'kd' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
-                                        'mp' => 1,
+                                        'da' => 1,
                                     ],
-                                1 =>
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'kl' =>
+                            [
+                                'lc' =>
                                     [
-                                        'mp' => 2,
+                                        'ly' => 1,
                                     ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ks' =>
+                            [
+                            ],
+                        'la' =>
+                            [
+                                'c' =>
+                                    [
+                                        'az' => 1,
+                                        'ac' => 1,
+                                    ],
+                                'cc' => 2,
+                                'cwc' => 2,
+                            ],
+                        'li' =>
+                            [
+                                'c' =>
+                                    [
+                                        'iq' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'ib' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'lo' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ov' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'lt' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'tz' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ly' =>
+                            [
                             ],
                         'mp' =>
                             [
-                                0 => 0,
-                                1 =>
+                                'lc' =>
                                     [
                                         'ph' => 2,
                                         'ps' => 1,
                                     ],
+                                'lcc' => 2,
+                                'lcwc' => 3,
                             ],
-                        'ps' =>
+                        'my' =>
                             [
-                                0 => 0,
-                                1 => 0,
+                            ],
+                        'ng' =>
+                            [
+                                'c' =>
+                                    [
+                                        'gl' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'nx' =>
+                            [
+                            ],
+                        'ny' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ym' => 2,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 2,
+                            ],
+                        'oc' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ck' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'of' =>
+                            [
+                            ],
+                        'og' =>
+                            [
+                            ],
+                        'or' =>
+                            [
                             ],
                         'ov' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
                                         've' => 1,
                                     ],
-                                1 =>
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
                                     [
                                         've' => 1,
                                     ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ow' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'wn' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ox' =>
+                            [
+                                'c' =>
+                                    [
+                                        'xi' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'oz' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ze' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'pa' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ac' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'ph' =>
+                            [
+                                'c' =>
+                                    [
+                                        'hi' => 2,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 2,
+                            ],
+                        'ps' =>
+                            [
+                            ],
+                        'qu' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ui' => 5,
+                                        'ua' => 2,
+                                        'uo' => 1,
+                                    ],
+                                'cc' => 3,
+                                'cwc' => 8,
+                            ],
+                        'ra' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ab' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'as' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'rd' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'ds' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'rf' =>
+                            [
+                            ],
+                        'ro' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ow' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'rt' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'tz' => 2,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 2,
+                            ],
+                        'sp' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ph' => 2,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 2,
+                            ],
+                        'th' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'he' => 3,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 3,
+                            ],
+                        'to' =>
+                            [
+                            ],
+                        'tz' =>
+                            [
+                            ],
+                        'ua' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ar' => 2,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 2,
+                            ],
+                        'ud' =>
+                            [
+                                'c' =>
+                                    [
+                                        'dg' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                            ],
+                        'ug' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'gs' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'ui' =>
+                            [
+                                'c' =>
+                                    [
+                                        'ic' => 4,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 4,
+                                'lc' =>
+                                    [
+                                        'iz' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
+                            ],
+                        'um' =>
+                            [
+                                'c' =>
+                                    [
+                                        'mp' => 1,
+                                    ],
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
+                                    [
+                                        'mp' => 2,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 2,
+                            ],
+                        'uo' =>
+                            [
+                                'lc' =>
+                                    [
+                                        'or' => 1,
+                                    ],
+                                'lcc' => 1,
+                                'lcwc' => 1,
                             ],
                         've' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
                                         'ex' => 1,
                                     ],
-                                1 =>
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
                                     [
                                         'er' => 1,
                                         'ed' => 1,
                                         'ex' => 1,
                                     ],
+                                'lcc' => 3,
+                                'lcwc' => 3,
                             ],
-                        'er' =>
+                        'vo' =>
                             [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'la' =>
-                            [
-                                0 =>
+                                'lc' =>
                                     [
-                                        'az' => 1,
-                                        'ac' => 1,
+                                        'ow' => 1,
                                     ],
-                                1 => 0,
-                            ],
-                        'az' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'zy' => 1,
-                                    ],
-                            ],
-                        'zy' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'do' =>
-                            [
-                                0 =>
-                                    [
-                                        'oz' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'og' => 1,
-                                    ],
-                            ],
-                        'og' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'ji' =>
-                            [
-                                0 =>
-                                    [
-                                        'iv' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'iv' =>
-                            [
-                                0 =>
-                                    [
-                                        've' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        've' => 2,
-                                    ],
-                            ],
-                        'ed' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'ny' =>
-                            [
-                                0 =>
-                                    [
-                                        'ym' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ym' =>
-                            [
-                                0 =>
-                                    [
-                                        'mp' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ph' =>
-                            [
-                                0 =>
-                                    [
-                                        'hi' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'gr' =>
-                            [
-                                0 =>
-                                    [
-                                        'ra' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ra' =>
-                            [
-                                0 =>
-                                    [
-                                        'ab' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'as' => 1,
-                                    ],
-                            ],
-                        'ab' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'bs' => 1,
-                                    ],
-                            ],
-                        'bs' =>
-                            [
-                                0 => 0,
-                                1 => 0,
+                                'lcc' => 1,
+                                'lcwc' => 1,
                             ],
                         'wa' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
                                         'al' => 1,
                                         'ar' => 1,
                                     ],
-                                1 => 0,
-                            ],
-                        'al' =>
-                            [
-                                0 =>
-                                    [
-                                        'lt' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'lt' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'tz' => 1,
-                                    ],
-                            ],
-                        'tz' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'gl' =>
-                            [
-                                0 =>
-                                    [
-                                        'li' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'ly' => 1,
-                                    ],
-                            ],
-                        'li' =>
-                            [
-                                0 =>
-                                    [
-                                        'iq' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'ib' => 1,
-                                    ],
-                            ],
-                        'ib' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'jo' =>
-                            [
-                                0 =>
-                                    [
-                                        'oc' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'oc' =>
-                            [
-                                0 =>
-                                    [
-                                        'ck' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ks' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'iz' =>
-                            [
-                                0 =>
-                                    [
-                                        'za' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'to' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'ex' =>
-                            [
-                                0 =>
-                                    [
-                                        'xi' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'dw' =>
-                            [
-                                0 =>
-                                    [
-                                        'wa' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ar' =>
-                            [
-                                0 =>
-                                    [
-                                        'rt' => 2,
-                                        'rd' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'rf' => 1,
-                                    ],
-                            ],
-                        'rf' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'sp' =>
-                            [
-                                0 =>
-                                    [
-                                        'ph' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'hi' =>
-                            [
-                                0 =>
-                                    [
-                                        'in' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'in' =>
-                            [
-                                0 =>
-                                    [
-                                        'ng' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'nx' => 2,
-                                        'ng' => 1,
-                                    ],
-                            ],
-                        'nx' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'of' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'bl' =>
-                            [
-                                0 =>
-                                    [
-                                        'la' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ac' =>
-                            [
-                                0 =>
-                                    [
-                                        'ck' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'ck' => 2,
-                                    ],
-                            ],
-                        'ua' =>
-                            [
-                                0 =>
-                                    [
-                                        'ar' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'rt' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'tz' => 2,
-                                    ],
-                            ],
-                        'ud' =>
-                            [
-                                0 =>
-                                    [
-                                        'dg' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'dg' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ge' => 1,
-                                    ],
-                            ],
-                        'ge' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'my' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'vo' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ow' => 1,
-                                    ],
-                            ],
-                        'ho' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ow' => 1,
-                                    ],
-                            ],
-                        'xi' =>
-                            [
-                                0 =>
-                                    [
-                                        'in' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ng' =>
-                            [
-                                0 =>
-                                    [
-                                        'gl' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'ly' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'da' =>
-                            [
-                                0 =>
-                                    [
-                                        'af' => 1,
-                                        'aw' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'af' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ft' => 1,
-                                    ],
-                            ],
-                        'ft' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'ze' =>
-                            [
-                                0 =>
-                                    [
-                                        'eb' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'en' => 1,
-                                    ],
-                            ],
-                        'eb' =>
-                            [
-                                0 =>
-                                    [
-                                        'br' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'as' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'fi' =>
-                            [
-                                0 =>
-                                    [
-                                        'iv' => 2,
-                                    ],
-                                1 => 0,
-                            ],
-                        'bo' =>
-                            [
-                                0 =>
-                                    [
-                                        'ox' => 1,
-                                    ],
-                                1 =>
-                                    [
-                                        'ox' => 1,
-                                    ],
+                                'cc' => 2,
+                                'cwc' => 2,
                             ],
                         'wi' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
                                         'iz' => 1,
                                         'it' => 1,
                                     ],
-                                1 => 0,
+                                'cc' => 2,
+                                'cwc' => 2,
                             ],
-                        'za' =>
+                        'wn' =>
                             [
-                                0 =>
-                                    [
-                                        'ar' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'rd' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ds' => 1,
-                                    ],
-                            ],
-                        'ds' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'kl' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ly' => 1,
-                                    ],
-                            ],
-                        'ja' =>
-                            [
-                                0 =>
-                                    [
-                                        'ac' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'kd' =>
-                            [
-                                0 =>
-                                    [
-                                        'da' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'aw' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'ws' => 1,
-                                    ],
                             ],
                         'ws' =>
                             [
-                                0 => 0,
-                                1 => 0,
                             ],
-                        'lo' =>
+                        'xi' =>
                             [
-                                0 =>
+                                'c' =>
                                     [
-                                        'ov' => 1,
+                                        'in' => 2,
                                     ],
-                                1 => 0,
+                                'cc' => 1,
+                                'cwc' => 2,
                             ],
-                        'bi' =>
+                        'ym' =>
                             [
-                                0 => 0,
-                                1 =>
+                                'c' =>
                                     [
-                                        'ig' => 1,
+                                        'mp' => 2,
                                     ],
+                                'cc' => 1,
+                                'cwc' => 2,
                             ],
-                        'ig' =>
+                        'za' =>
                             [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'pa' =>
-                            [
-                                0 =>
+                                'c' =>
                                     [
-                                        'ac' => 1,
+                                        'ar' => 1,
                                     ],
-                                1 => 0,
+                                'cc' => 1,
+                                'cwc' => 1,
                             ],
-                        'it' =>
+                        'ze' =>
                             [
-                                0 => 0,
-                                1 =>
+                                'c' =>
                                     [
-                                        'th' => 1,
+                                        'eb' => 1,
                                     ],
-                            ],
-                        'oz' =>
-                            [
-                                0 =>
+                                'cc' => 1,
+                                'cwc' => 1,
+                                'lc' =>
                                     [
-                                        'ze' => 1,
+                                        'en' => 1,
                                     ],
-                                1 => 0,
+                                'lcc' => 1,
+                                'lcwc' => 1,
                             ],
-                        'en' =>
+                        'zy' =>
                             [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'iq' =>
-                            [
-                                0 =>
-                                    [
-                                        'qu' => 1,
-                                    ],
-                                1 => 0,
-                            ],
-                        'uo' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'or' => 1,
-                                    ],
-                            ],
-                        'or' =>
-                            [
-                                0 => 0,
-                                1 => 0,
-                            ],
-                        'ug' =>
-                            [
-                                0 => 0,
-                                1 =>
-                                    [
-                                        'gs' => 1,
-                                    ],
-                            ],
-                        'gs' =>
-                            [
-                                0 => 0,
-                                1 => 0,
                             ],
                     ],
+                'elements_count' => 97,
                 'first_elements' =>
                     [
                         'qu' => 7,
@@ -872,17 +939,18 @@ test('Model can be build with count', function (): void {
                         'pa' => 1,
                         'li' => 1,
                     ],
+                'first_elements_count' => 33,
+                'first_elements_weight_count' => 56,
                 'sentence_elements' =>
                     [
-                        1 =>
+                        3 =>
                             [
-                                'th' => 2,
-                                'ji' => 1,
-                                'gl' => 1,
-                                'sp' => 1,
-                                'ho' => 1,
-                                'ja' => 1,
-                                'pa' => 1,
+                                'qu' => 2,
+                                'bo' => 2,
+                                'br' => 1,
+                                'ny' => 1,
+                                'bl' => 1,
+                                'my' => 1,
                             ],
                         2 =>
                             [
@@ -895,25 +963,24 @@ test('Model can be build with count', function (): void {
                                 'lo' => 1,
                                 'my' => 1,
                             ],
-                        3 =>
+                        1 =>
                             [
-                                'qu' => 2,
-                                'bo' => 2,
-                                'br' => 1,
-                                'ny' => 1,
-                                'bl' => 1,
-                                'my' => 1,
-                            ],
-                        -3 =>
-                            [
-                                'th' => 1,
-                                'gr' => 1,
-                                'to' => 1,
-                                'ju' => 1,
-                                'da' => 1,
-                                'wi' => 1,
+                                'th' => 2,
+                                'ji' => 1,
+                                'gl' => 1,
                                 'sp' => 1,
+                                'ho' => 1,
+                                'ja' => 1,
+                                'pa' => 1,
+                            ],
+                        -1 =>
+                            [
+                                'ju' => 2,
+                                'qu' => 2,
                                 'do' => 1,
+                                'wa' => 1,
+                                'dw' => 1,
+                                'vo' => 1,
                             ],
                         -2 =>
                             [
@@ -926,19 +993,36 @@ test('Model can be build with count', function (): void {
                                 'of' => 1,
                                 'li' => 1,
                             ],
-                        -1 =>
+                        -3 =>
                             [
-                                'ju' => 2,
-                                'qu' => 2,
+                                'th' => 1,
+                                'gr' => 1,
+                                'to' => 1,
+                                'ju' => 1,
+                                'da' => 1,
+                                'wi' => 1,
+                                'sp' => 1,
                                 'do' => 1,
-                                'wa' => 1,
-                                'dw' => 1,
-                                'vo' => 1,
                             ],
                     ],
-            ],
-        'statistics' =>
-            [
+                'sentence_elements_count' =>
+                    [
+                        1 => 7,
+                        2 => 8,
+                        3 => 6,
+                        -3 => 8,
+                        -2 => 8,
+                        -1 => 6,
+                    ],
+                'sentence_elements_weight_count' =>
+                    [
+                        1 => 8,
+                        2 => 8,
+                        3 => 8,
+                        -3 => 8,
+                        -2 => 8,
+                        -1 => 8,
+                    ],
                 'word_lengths' =>
                     [
                         5 => 15,
@@ -949,7 +1033,8 @@ test('Model can be build with count', function (): void {
                         8 => 2,
                         7 => 2,
                     ],
-                'element_count' => 97,
+                'word_lenghts_count' => 7,
+                'word_lenghts_weight_count' => 56,
                 'sentence_lengths' =>
                     [
                         6 => 3,
@@ -957,67 +1042,70 @@ test('Model can be build with count', function (): void {
                         9 => 1,
                         8 => 1,
                     ],
-            ],
-        'excluded' =>
-            [
-                0 => 'big',
-                1 => 'black',
-                2 => 'box',
-                3 => 'boxing',
-                4 => 'brown',
-                5 => 'daft',
-                6 => 'dog',
-                7 => 'dozen',
-                8 => 'dwarf',
-                9 => 'five',
-                10 => 'five',
-                11 => 'fox',
-                12 => 'fox',
-                13 => 'glib',
-                14 => 'grabs',
-                15 => 'how',
-                16 => 'jackdaws',
-                17 => 'jived',
-                18 => 'jocks',
-                19 => 'judge',
-                20 => 'jugs',
-                21 => 'jump',
-                22 => 'jump',
-                23 => 'jumps',
-                24 => 'lazy',
-                25 => 'liquor',
-                26 => 'love',
-                27 => 'my',
-                28 => 'my',
-                29 => 'my',
-                30 => 'nymph',
-                31 => 'nymph',
-                32 => 'of',
-                33 => 'of',
-                34 => 'over',
-                35 => 'pack',
-                36 => 'quartz',
-                37 => 'quartz',
-                38 => 'quick',
-                39 => 'quick',
-                40 => 'quick',
-                41 => 'quickly',
-                42 => 'quiz',
-                43 => 'sphinx',
-                44 => 'sphinx',
-                45 => 'the',
-                46 => 'the',
-                47 => 'the',
-                48 => 'to',
-                49 => 'vex',
-                50 => 'vexingly',
-                51 => 'vow',
-                52 => 'waltz',
-                53 => 'with',
-                54 => 'wizards',
-                55 => 'zebras',
+                'sentence_lenghts_count' => 4,
+                'sentence_lenghts_weight_count' => 8,
+                'excluded_words' =>
+                    [
+                        0 => 'big',
+                        1 => 'black',
+                        2 => 'box',
+                        3 => 'boxing',
+                        4 => 'brown',
+                        5 => 'daft',
+                        6 => 'dog',
+                        7 => 'dozen',
+                        8 => 'dwarf',
+                        9 => 'five',
+                        10 => 'five',
+                        11 => 'fox',
+                        12 => 'fox',
+                        13 => 'glib',
+                        14 => 'grabs',
+                        15 => 'how',
+                        16 => 'jackdaws',
+                        17 => 'jived',
+                        18 => 'jocks',
+                        19 => 'judge',
+                        20 => 'jugs',
+                        21 => 'jump',
+                        22 => 'jump',
+                        23 => 'jumps',
+                        24 => 'lazy',
+                        25 => 'liquor',
+                        26 => 'love',
+                        27 => 'my',
+                        28 => 'my',
+                        29 => 'my',
+                        30 => 'nymph',
+                        31 => 'nymph',
+                        32 => 'of',
+                        33 => 'of',
+                        34 => 'over',
+                        35 => 'pack',
+                        36 => 'quartz',
+                        37 => 'quartz',
+                        38 => 'quick',
+                        39 => 'quick',
+                        40 => 'quick',
+                        41 => 'quickly',
+                        42 => 'quiz',
+                        43 => 'sphinx',
+                        44 => 'sphinx',
+                        45 => 'the',
+                        46 => 'the',
+                        47 => 'the',
+                        48 => 'to',
+                        49 => 'vex',
+                        50 => 'vexingly',
+                        51 => 'vow',
+                        52 => 'waltz',
+                        53 => 'with',
+                        54 => 'wizards',
+                        55 => 'zebras',
+                    ],
+                'excluded_words_count' => 56,
             ],
     ];
 
-    expect($model)->toBe($expected);
+    expect($modelData)->toBe($expected);
 });

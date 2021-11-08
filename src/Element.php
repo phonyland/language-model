@@ -25,17 +25,21 @@ final class Element
     ) {
     }
 
-    public function addLastChildren(string $ngram): void
+    public function addLastChildren(string $ngram): self
     {
         NGramCount::elementOnArray($ngram, $this->lastChildren);
+
+        return $this;
     }
 
-    public function addChildren(string $ngram): void
+    public function addChildren(string $ngram): self
     {
         NGramCount::elementOnArray($ngram, $this->children);
+
+        return $this;
     }
 
-    public function calculate(): void
+    public function calculate(): self
     {
         arsort($this->children);
         $this->childrenCount = count($this->children);
@@ -44,13 +48,13 @@ final class Element
         arsort($this->lastChildren);
         $this->lastChildrenCount = count($this->lastChildren);
         $this->lastChildrenWeightCount = array_sum($this->lastChildren);
+
+        return $this;
     }
 
     public function toArray(): array
     {
-        $this->calculate();
-
-        return array_filter([
+       return array_filter([
             'c'    => $this->children,
             'cc'   => $this->childrenCount,
             'cwc'  => $this->childrenWeightCount,
