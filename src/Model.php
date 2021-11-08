@@ -65,7 +65,7 @@ final class Model
 
     private function feedSentenceLenghts(int $lenght): void
     {
-        NGramCount::elementOnArray((string)$lenght, $this->sentenceLengths);
+        NGramCount::elementOnArray((string) $lenght, $this->sentenceLengths);
     }
 
     public function feed(string $text): self
@@ -112,7 +112,6 @@ final class Model
                             }
                             NGramCount::elementOnArray($ngram, $this->sentenceElements[($positionFromLast + 1) * -1]);
                         }
-
                     }
 
                     if ($previousElement !== null) {
@@ -148,7 +147,7 @@ final class Model
     private function calculateFirstelements(): void
     {
         arsort($this->firstElements);
-        $this->firstElementsCount = count($this->firstElements);
+        $this->firstElementsCount       = count($this->firstElements);
         $this->firstelementsWeightCount = array_sum($this->firstElements);
     }
 
@@ -156,7 +155,7 @@ final class Model
     {
         foreach ($this->sentenceElements as $index => $sentenceElement) {
             arsort($this->sentenceElements[$index]);
-            $this->sentenceElementsCount[$index] = count($sentenceElement);
+            $this->sentenceElementsCount[$index]       = count($sentenceElement);
             $this->sentenceElementsWeightCount[$index] = array_sum($sentenceElement);
         }
         krsort($this->sentenceElements);
@@ -165,14 +164,14 @@ final class Model
     private function calculateWordLenghts(): void
     {
         arsort($this->wordLengths);
-        $this->wordLengthsCount = count($this->wordLengths);
+        $this->wordLengthsCount       = count($this->wordLengths);
         $this->wordLengthsWeightCount = array_sum($this->wordLengths);
     }
 
     private function calculateSentenceLenghts(): void
     {
         arsort($this->sentenceLengths);
-        $this->sentenceLengthsCount = count($this->sentenceLengths);
+        $this->sentenceLengthsCount       = count($this->sentenceLengths);
         $this->sentenceLengthsWeightCount = array_sum($this->sentenceLengths);
     }
 
@@ -202,7 +201,7 @@ final class Model
     {
         return [
             'config'   => $this->config->toArray(),
-            'data' => [
+            'data'     => [
                 'elements'                       => $this->elements,
                 'elements_count'                 => $this->elementCount,
                 'first_elements'                 => $this->firstElements,

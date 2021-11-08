@@ -14,13 +14,13 @@ final class Config
 {
     // region Attributes
 
-    public string $name = 'Phony Language Model';
-    public ?Tokenizer $tokenizer = null;
-    public int $n = 2;
-    public int $minLenght = 2;
-    public bool $unique = false;
-    public bool $excludeOriginals = false;
-    public int $frequencyPrecision = 7;
+    public string $name                  = 'Phony Language Model';
+    public ?Tokenizer $tokenizer         = null;
+    public int $n                        = 2;
+    public int $minLenght                = 2;
+    public bool $unique                  = false;
+    public bool $excludeOriginals        = false;
+    public int $frequencyPrecision       = 7;
     public int $numberOfSentenceElements = 5;
 
     // endregion
@@ -29,8 +29,12 @@ final class Config
 
     public function __construct(?string $name = null, ?Tokenizer $tokenizer = null)
     {
-        if ($name !== null) { $this->name = $name; }
-        if ($tokenizer !== null) { $this->tokenizer = $tokenizer;}
+        if ($name !== null) {
+            $this->name = $name;
+        }
+        if ($tokenizer !== null) {
+            $this->tokenizer = $tokenizer;
+        }
     }
 
     public function toArray(): array

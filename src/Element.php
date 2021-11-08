@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Phonyland\LanguageModel;
 
 use Phonyland\NGram\NGramCount;
-use Phonyland\NGram\NGramFrequency;
 
 /***
  * @internal
@@ -42,11 +41,11 @@ final class Element
     public function calculate(): self
     {
         arsort($this->children);
-        $this->childrenCount = count($this->children);
+        $this->childrenCount       = count($this->children);
         $this->childrenWeightCount = array_sum($this->children);
 
         arsort($this->lastChildren);
-        $this->lastChildrenCount = count($this->lastChildren);
+        $this->lastChildrenCount       = count($this->lastChildren);
         $this->lastChildrenWeightCount = array_sum($this->lastChildren);
 
         return $this;
@@ -54,7 +53,7 @@ final class Element
 
     public function toArray(): array
     {
-       return array_filter([
+        return array_filter([
             'c'    => $this->children,
             'cc'   => $this->childrenCount,
             'cwc'  => $this->childrenWeightCount,
