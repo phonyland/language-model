@@ -14,40 +14,49 @@ final class Element
 {
     public function __construct(
         public string $ngram,
-        /** @var array<string, float> $children */
+        /** @var array<string, int> $children */
         public array $children = [],
-        /** @var array<string, float> $lastChildren */
+        /** @var array<string, int> $lastChildren */
+        public int $childrenCount = 0,
+        public int $childrenWeightCount = 0,
         public array $lastChildren = [],
+        public int $lastChildrenCount = 0,
+        public int $lastChildrenWeightCount = 0,
     ) {
     }
 
-    public function countLastChildren(string $ngram): void
+    public function addLastChildren(string $ngram): void
     {
         NGramCount::elementOnArray($ngram, $this->lastChildren);
     }
 
-    public function countChildren(string $ngram): void
+    public function addChildren(string $ngram): void
     {
         NGramCount::elementOnArray($ngram, $this->children);
     }
 
-    public function calculateChildrenFrequency(): void
-    {
-        NGramFrequency::frequencyFromCount($this->children);
-    }
-
-    public function calculateLastChildrenFrequency(): void
-    {
-        NGramFrequency::frequencyFromCount($this->lastChildren);
-    }
-
-    public function sortChildrenByCount(): void
+    public function calculate(): void
     {
         arsort($this->children);
+        $this->childrenCount = count($this->children);
+        $this->childrenWeightCount = array_sum($this->children);
+
+        arsort($this->lastChildren);
+        $this->lastChildrenCount = count($this->lastChildren);
+        $this->lastChildrenWeightCount = array_sum($this->lastChildren);
     }
 
-    public function sortLastChildrenByCount(): void
+    public function toArray(): array
     {
-        arsort($this->lastChildren);
+        $this->calculate();
+
+        return array_filter([
+            'c'    => $this->children,
+            'cc'   => $this->childrenCount,
+            'cwc'  => $this->childrenWeightCount,
+            'lc'   => $this->lastChildren,
+            'lcc'  => $this->lastChildrenCount,
+            'lcwc' => $this->lastChildrenWeightCount,
+        ]);
     }
 }

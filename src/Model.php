@@ -33,7 +33,7 @@ final class Model
     public array $sentenceLengths = [];
 
     public int $elementCount;
-    
+
     // endregion
 
     /** @var array<string> */
@@ -107,9 +107,9 @@ final class Model
                     if ($previousElement !== null) {
                         // check if it is the last children or not
                         if ($i === $ngramCount - 1) {
-                            $previousElement->countLastChildren($ngram);
+                            $previousElement->addLastChildren($ngram);
                         } else {
-                            $previousElement->countChildren($ngram);
+                            $previousElement->addChildren($ngram);
                         }
                     }
 
@@ -127,27 +127,11 @@ final class Model
         sort($this->excluded);
         arsort($this->wordLengths);
         arsort($this->sentenceLengths);
-
-        // Sort element counts
-        $nGramKeys     = array_keys($this->elements);
-        $nGramKeyCount = count($nGramKeys);
-
-        for ($i = 0; $i < $nGramKeyCount; $i++) {
-            $ngram = $nGramKeys[$i];
-            /** @var \Phonyland\LanguageModel\Element $ngramElement */
-            $ngramElement = $this->elements[$ngram];
-
-            $ngramElement->sortChildrenByCount();
-            $ngramElement->sortLastChildrenByCount();
-
-            $this->elements[$nGramKeys[$i]] = [
-                array_keys($ngramElement->children) !== [] ? $ngramElement->children : 0,
-                array_keys($ngramElement->lastChildren) !== [] ? $ngramElement->lastChildren : 0,
-            ];
-        }
-
-        // Sort first elements counts
         arsort($this->firstElements);
+
+        foreach ($this->elements as $ngram => $element) {
+            $this->elements[$ngram] = $element->toArray();
+        }
 
         // Sort sentence elements counts
         foreach ($this->sentenceElements as $index => $sentenceElement) {
