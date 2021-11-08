@@ -177,8 +177,8 @@ final class Model
 
     private function calculateExludedWords(): void
     {
-        // Flatten exluded word arrays and sort
-        $this->excludedWords = array_merge(...$this->excludedWords);
+        // Flatten and unique exluded word arrays and sort
+        $this->excludedWords = array_unique(array_merge(...$this->excludedWords));
 
         sort($this->excludedWords);
 
