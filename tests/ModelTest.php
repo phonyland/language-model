@@ -84,6 +84,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'bs' => 1,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'bs' => 1,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 1,
                             ],
@@ -93,9 +97,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ck' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ck' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
+                                    [
+                                        'ck' => 4,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ck' => 4,
                                     ],
@@ -108,12 +120,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ft' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'ft' => 2,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 2,
                             ],
                         'al' =>
                             [
                                 'c' =>
+                                    [
+                                        'lt' => 1,
+                                    ],
+                                'cl' =>
                                     [
                                         'lt' => 1,
                                     ],
@@ -127,9 +147,18 @@ test('Model can be build with count', function (): void {
                                         'rt' => 4,
                                         'rd' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'rt' => 4,
+                                        'rd' => 6,
+                                    ],
                                 'cc' => 2,
                                 'cwc' => 6,
                                 'lc' =>
+                                    [
+                                        'rf' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'rf' => 1,
                                     ],
@@ -145,12 +174,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ws' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'ws' => 2,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 2,
                             ],
                         'az' =>
                             [
                                 'lc' =>
+                                    [
+                                        'zy' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'zy' => 1,
                                     ],
@@ -163,12 +200,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ig' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'ig' => 2,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 2,
                             ],
                         'bl' =>
                             [
                                 'c' =>
+                                    [
+                                        'la' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'la' => 2,
                                     ],
@@ -181,9 +226,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ox' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ox' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
+                                    [
+                                        'ox' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ox' => 2,
                                     ],
@@ -196,6 +249,11 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ra' => 2,
                                         'ro' => 1,
+                                    ],
+                                'cl' =>
+                                    [
+                                        'ra' => 2,
+                                        'ro' => 3,
                                     ],
                                 'cc' => 2,
                                 'cwc' => 3,
@@ -210,9 +268,18 @@ test('Model can be build with count', function (): void {
                                         'kl' => 2,
                                         'kd' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'kl' => 2,
+                                        'kd' => 4,
+                                    ],
                                 'cc' => 2,
                                 'cwc' => 4,
                                 'lc' =>
+                                    [
+                                        'ks' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ks' => 1,
                                     ],
@@ -226,12 +293,21 @@ test('Model can be build with count', function (): void {
                                         'af' => 2,
                                         'aw' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'af' => 2,
+                                        'aw' => 4,
+                                    ],
                                 'cc' => 2,
                                 'cwc' => 4,
                             ],
                         'dg' =>
                             [
                                 'lc' =>
+                                    [
+                                        'ge' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ge' => 2,
                                     ],
@@ -244,9 +320,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'oz' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'oz' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
+                                    [
+                                        'og' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'og' => 1,
                                     ],
@@ -262,12 +346,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'wa' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'wa' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                             ],
                         'eb' =>
                             [
                                 'c' =>
+                                    [
+                                        'br' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'br' => 2,
                                     ],
@@ -289,6 +381,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'xi' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'xi' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
@@ -298,12 +394,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'iv' => 4,
                                     ],
+                                'cl' =>
+                                    [
+                                        'iv' => 4,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 4,
                             ],
                         'fo' =>
                             [
                                 'lc' =>
+                                    [
+                                        'ox' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ox' => 2,
                                     ],
@@ -322,9 +426,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'li' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'li' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                                 'lc' =>
+                                    [
+                                        'ly' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ly' => 2,
                                     ],
@@ -334,6 +446,10 @@ test('Model can be build with count', function (): void {
                         'gr' =>
                             [
                                 'c' =>
+                                    [
+                                        'ra' => 1,
+                                    ],
+                                'cl' =>
                                     [
                                         'ra' => 1,
                                     ],
@@ -352,12 +468,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'in' => 4,
                                     ],
+                                'cl' =>
+                                    [
+                                        'in' => 4,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 4,
                             ],
                         'ho' =>
                             [
                                 'lc' =>
+                                    [
+                                        'ow' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ow' => 2,
                                     ],
@@ -373,9 +497,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ck' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ck' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
+                                    [
+                                        'ck' => 4,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ck' => 4,
                                     ],
@@ -391,6 +523,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ng' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ng' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
@@ -398,12 +534,21 @@ test('Model can be build with count', function (): void {
                                         'nx' => 4,
                                         'ng' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'nx' => 4,
+                                        'ng' => 6,
+                                    ],
                                 'lcc' => 2,
                                 'lcwc' => 6,
                             ],
                         'iq' =>
                             [
                                 'c' =>
+                                    [
+                                        'qu' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'qu' => 2,
                                     ],
@@ -416,6 +561,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'th' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'th' => 2,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 2,
                             ],
@@ -425,9 +574,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         've' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        've' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                                 'lc' =>
+                                    [
+                                        've' => 4,
+                                    ],
+                                'lcl' =>
                                     [
                                         've' => 4,
                                     ],
@@ -440,12 +597,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'za' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'za' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
                         'ja' =>
                             [
                                 'c' =>
+                                    [
+                                        'ac' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'ac' => 2,
                                     ],
@@ -458,12 +623,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'iv' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'iv' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                             ],
                         'jo' =>
                             [
                                 'c' =>
+                                    [
+                                        'oc' => 1,
+                                    ],
+                                'cl' =>
                                     [
                                         'oc' => 1,
                                     ],
@@ -478,6 +651,12 @@ test('Model can be build with count', function (): void {
                                         'ud' => 2,
                                         'ug' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'um' => 5,
+                                        'ud' => 7,
+                                        'ug' => 9,
+                                    ],
                                 'cc' => 3,
                                 'cwc' => 9,
                             ],
@@ -487,12 +666,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'da' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'da' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
                         'kl' =>
                             [
                                 'lc' =>
+                                    [
+                                        'ly' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ly' => 2,
                                     ],
@@ -509,6 +696,11 @@ test('Model can be build with count', function (): void {
                                         'ac' => 2,
                                         'az' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ac' => 2,
+                                        'az' => 3,
+                                    ],
                                 'cc' => 2,
                                 'cwc' => 3,
                             ],
@@ -518,9 +710,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'iq' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'iq' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
+                                    [
+                                        'ib' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ib' => 1,
                                     ],
@@ -533,12 +733,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ov' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ov' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
                         'lt' =>
                             [
                                 'lc' =>
+                                    [
+                                        'tz' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'tz' => 1,
                                     ],
@@ -555,6 +763,11 @@ test('Model can be build with count', function (): void {
                                         'ph' => 2,
                                         'ps' => 1,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'ph' => 2,
+                                        'ps' => 3,
+                                    ],
                                 'lcc' => 2,
                                 'lcwc' => 3,
                             ],
@@ -564,6 +777,10 @@ test('Model can be build with count', function (): void {
                         'ng' =>
                             [
                                 'c' =>
+                                    [
+                                        'gl' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'gl' => 2,
                                     ],
@@ -579,12 +796,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ym' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ym' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
                         'oc' =>
                             [
                                 'c' =>
+                                    [
+                                        'ck' => 1,
+                                    ],
+                                'cl' =>
                                     [
                                         'ck' => 1,
                                     ],
@@ -606,9 +831,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         've' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        've' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                                 'lc' =>
+                                    [
+                                        've' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         've' => 2,
                                     ],
@@ -621,12 +854,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'wn' => 1,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'wn' => 1,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 1,
                             ],
                         'ox' =>
                             [
                                 'c' =>
+                                    [
+                                        'xi' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'xi' => 2,
                                     ],
@@ -639,6 +880,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ze' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ze' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
@@ -648,12 +893,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ac' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ac' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
                         'ph' =>
                             [
                                 'c' =>
+                                    [
+                                        'hi' => 4,
+                                    ],
+                                'cl' =>
                                     [
                                         'hi' => 4,
                                     ],
@@ -671,6 +924,12 @@ test('Model can be build with count', function (): void {
                                         'ua' => 4,
                                         'uo' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ui' => 7,
+                                        'ua' => 11,
+                                        'uo' => 13,
+                                    ],
                                 'cc' => 3,
                                 'cwc' => 13,
                             ],
@@ -680,9 +939,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ab' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ab' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                                 'lc' =>
+                                    [
+                                        'as' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'as' => 2,
                                     ],
@@ -692,6 +959,10 @@ test('Model can be build with count', function (): void {
                         'rd' =>
                             [
                                 'lc' =>
+                                    [
+                                        'ds' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ds' => 2,
                                     ],
@@ -707,12 +978,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ow' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ow' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                             ],
                         'rt' =>
                             [
                                 'lc' =>
+                                    [
+                                        'tz' => 4,
+                                    ],
+                                'lcl' =>
                                     [
                                         'tz' => 4,
                                     ],
@@ -725,12 +1004,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ph' => 4,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ph' => 4,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 4,
                             ],
                         'th' =>
                             [
                                 'lc' =>
+                                    [
+                                        'he' => 4,
+                                    ],
+                                'lcl' =>
                                     [
                                         'he' => 4,
                                     ],
@@ -749,12 +1036,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ar' => 4,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ar' => 4,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 4,
                             ],
                         'ud' =>
                             [
                                 'c' =>
+                                    [
+                                        'dg' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'dg' => 2,
                                     ],
@@ -767,6 +1062,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'gs' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'gs' => 2,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 2,
                             ],
@@ -776,9 +1075,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ic' => 6,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ic' => 6,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 6,
                                 'lc' =>
+                                    [
+                                        'iz' => 1,
+                                    ],
+                                'lcl' =>
                                     [
                                         'iz' => 1,
                                     ],
@@ -791,9 +1098,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'mp' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'mp' => 1,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 1,
                                 'lc' =>
+                                    [
+                                        'mp' => 4,
+                                    ],
+                                'lcl' =>
                                     [
                                         'mp' => 4,
                                     ],
@@ -806,12 +1121,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'or' => 2,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'or' => 2,
+                                    ],
                                 'lcc' => 1,
                                 'lcwc' => 2,
                             ],
                         've' =>
                             [
                                 'c' =>
+                                    [
+                                        'ex' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'ex' => 2,
                                     ],
@@ -823,12 +1146,22 @@ test('Model can be build with count', function (): void {
                                         'ed' => 1,
                                         'ex' => 1,
                                     ],
+                                'lcl' =>
+                                    [
+                                        'er' => 1,
+                                        'ed' => 2,
+                                        'ex' => 3,
+                                    ],
                                 'lcc' => 3,
                                 'lcwc' => 3,
                             ],
                         'vo' =>
                             [
                                 'lc' =>
+                                    [
+                                        'ow' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'ow' => 2,
                                     ],
@@ -842,6 +1175,11 @@ test('Model can be build with count', function (): void {
                                         'al' => 1,
                                         'ar' => 1,
                                     ],
+                                'cl' =>
+                                    [
+                                        'al' => 1,
+                                        'ar' => 2,
+                                    ],
                                 'cc' => 2,
                                 'cwc' => 2,
                             ],
@@ -851,6 +1189,11 @@ test('Model can be build with count', function (): void {
                                     [
                                         'iz' => 2,
                                         'it' => 2,
+                                    ],
+                                'cl' =>
+                                    [
+                                        'iz' => 2,
+                                        'it' => 4,
                                     ],
                                 'cc' => 2,
                                 'cwc' => 4,
@@ -867,12 +1210,20 @@ test('Model can be build with count', function (): void {
                                     [
                                         'in' => 4,
                                     ],
+                                'cl' =>
+                                    [
+                                        'in' => 4,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 4,
                             ],
                         'ym' =>
                             [
                                 'c' =>
+                                    [
+                                        'mp' => 2,
+                                    ],
+                                'cl' =>
                                     [
                                         'mp' => 2,
                                     ],
@@ -885,6 +1236,10 @@ test('Model can be build with count', function (): void {
                                     [
                                         'ar' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'ar' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                             ],
@@ -894,9 +1249,17 @@ test('Model can be build with count', function (): void {
                                     [
                                         'eb' => 2,
                                     ],
+                                'cl' =>
+                                    [
+                                        'eb' => 2,
+                                    ],
                                 'cc' => 1,
                                 'cwc' => 2,
                                 'lc' =>
+                                    [
+                                        'en' => 2,
+                                    ],
+                                'lcl' =>
                                     [
                                         'en' => 2,
                                     ],
@@ -943,6 +1306,42 @@ test('Model can be build with count', function (): void {
                         'jo' => 1,
                         'to' => 1,
                         'dw' => 1,
+                    ],
+                'first_elements_lookup' =>
+                    [
+                        'qu' => 11,
+                        'ju' => 20,
+                        'my' => 26,
+                        'th' => 30,
+                        'sp' => 34,
+                        'of' => 38,
+                        'fi' => 42,
+                        'bo' => 46,
+                        'wi' => 50,
+                        'do' => 53,
+                        've' => 56,
+                        'fo' => 58,
+                        'ny' => 60,
+                        'bl' => 62,
+                        'vo' => 64,
+                        'ho' => 66,
+                        'da' => 68,
+                        'ze' => 70,
+                        'ja' => 72,
+                        'lo' => 74,
+                        'bi' => 76,
+                        'pa' => 78,
+                        'li' => 80,
+                        'br' => 81,
+                        'ov' => 82,
+                        'la' => 83,
+                        'ji' => 84,
+                        'gr' => 85,
+                        'wa' => 86,
+                        'gl' => 87,
+                        'jo' => 88,
+                        'to' => 89,
+                        'dw' => 90,
                     ],
                 'first_elements_count' => 33,
                 'first_elements_weight_count' => 90,
@@ -1010,6 +1409,70 @@ test('Model can be build with count', function (): void {
                                 'to' => 1,
                             ],
                     ],
+                'sentence_elements_lookup' =>
+                    [
+                        1 =>
+                            [
+                                'th' => 3,
+                                'sp' => 5,
+                                'ho' => 7,
+                                'ja' => 9,
+                                'pa' => 11,
+                                'ji' => 12,
+                                'gl' => 13,
+                            ],
+                        2 =>
+                            [
+                                'of' => 2,
+                                've' => 4,
+                                'fi' => 6,
+                                'lo' => 8,
+                                'my' => 10,
+                                'qu' => 11,
+                                'fo' => 12,
+                                'jo' => 13,
+                            ],
+                        3 =>
+                            [
+                                'bo' => 4,
+                                'qu' => 7,
+                                'bl' => 9,
+                                'my' => 11,
+                                'br' => 12,
+                                'ny' => 13,
+                            ],
+                        -3 =>
+                            [
+                                'ju' => 2,
+                                'da' => 4,
+                                'wi' => 6,
+                                'sp' => 8,
+                                'do' => 10,
+                                'th' => 11,
+                                'gr' => 12,
+                                'to' => 13,
+                            ],
+                        -2 =>
+                            [
+                                'my' => 2,
+                                'ze' => 4,
+                                'ju' => 6,
+                                'of' => 8,
+                                'li' => 10,
+                                'la' => 11,
+                                'qu' => 12,
+                                've' => 13,
+                            ],
+                        -1 =>
+                            [
+                                'ju' => 4,
+                                'qu' => 8,
+                                'vo' => 10,
+                                'do' => 11,
+                                'wa' => 12,
+                                'dw' => 13,
+                            ],
+                    ],
                 'sentence_elements_count' =>
                     [
                         1 => 7,
@@ -1037,6 +1500,16 @@ test('Model can be build with count', function (): void {
                         2 => 11,
                         8 => 4,
                         7 => 4,
+                    ],
+                'word_lengths_lookup' =>
+                    [
+                        4 => 22,
+                        5 => 41,
+                        3 => 57,
+                        6 => 71,
+                        2 => 82,
+                        8 => 86,
+                        7 => 90,
                     ],
                 'word_lenghts_count' => 7,
                 'word_lenghts_weight_count' => 90,

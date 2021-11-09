@@ -18,12 +18,18 @@ final class Model
     /** @var array<string, int> */
     public array $firstElements = [];
 
+    /** @var array<string, int> */
+    public array $firstElementsLookup = [];
+
     public int $firstElementsCount;
 
-    public int $firstelementsWeightCount;
+    public int $firstElementsWeightCount;
 
     /** @var array<array<string, int>> */
     public array $sentenceElements = [];
+
+    /** @var array<string, int */
+    public array $sentenceElementsLookup = [];
 
     /** @var array<string, int */
     public array $sentenceElementsCount = [];
@@ -34,12 +40,18 @@ final class Model
     /** @var array<int, int> */
     public array $wordLengths = [];
 
+    /** @var array<int, int> */
+    public array $wordLengthsLookup = [];
+
     public int $wordLengthsCount;
 
     public int $wordLengthsWeightCount;
 
     /** @var array<int, int> */
     public array $sentenceLengths = [];
+
+    /** @var array<int, int> */
+    public array $sentenceLengthsLookup = [];
 
     public int $sentenceLengthsCount;
 
@@ -131,6 +143,15 @@ final class Model
         return $this;
     }
 
+    public static function calculateLookup(array &$elements, array &$lookup): void
+    {
+        $totalWeight = 0;
+        foreach ($elements as $element => $weight) {
+            $totalWeight += $weight;
+            $lookup[$element] = $totalWeight;
+        }
+    }
+
     private function calculateElements(): void
     {
         /** @var \Phonyland\LanguageModel\Element $element */
@@ -148,7 +169,8 @@ final class Model
     {
         arsort($this->firstElements);
         $this->firstElementsCount       = count($this->firstElements);
-        $this->firstelementsWeightCount = array_sum($this->firstElements);
+        $this->firstElementsWeightCount = array_sum($this->firstElements);
+        self::calculateLookup($this->firstElements, $this->firstElementsLookup);
     }
 
     private function calculateSentenceElements(): void
@@ -157,6 +179,9 @@ final class Model
             arsort($this->sentenceElements[$index]);
             $this->sentenceElementsCount[$index]       = count($sentenceElement);
             $this->sentenceElementsWeightCount[$index] = array_sum($sentenceElement);
+
+            $this->sentenceElementsLookup[$index] = [];
+            self::calculateLookup($this->sentenceElements[$index], $this->sentenceElementsLookup[$index]);
         }
         krsort($this->sentenceElements);
     }
@@ -166,6 +191,7 @@ final class Model
         arsort($this->wordLengths);
         $this->wordLengthsCount       = count($this->wordLengths);
         $this->wordLengthsWeightCount = array_sum($this->wordLengths);
+        self::calculateLookup($this->wordLengths, $this->wordLengthsLookup);
     }
 
     private function calculateSentenceLenghts(): void
@@ -173,6 +199,7 @@ final class Model
         arsort($this->sentenceLengths);
         $this->sentenceLengthsCount       = count($this->sentenceLengths);
         $this->sentenceLengthsWeightCount = array_sum($this->sentenceLengths);
+        self::calculateLookup($this->sentenceLengths, $this->sentenceLengthsLookup);
     }
 
     private function calculateExludedWords(): void
@@ -205,12 +232,15 @@ final class Model
                 'elements'                       => $this->elements,
                 'elements_count'                 => $this->elementCount,
                 'first_elements'                 => $this->firstElements,
+                'first_elements_lookup'          => $this->firstElementsLookup,
                 'first_elements_count'           => $this->firstElementsCount,
-                'first_elements_weight_count'    => $this->firstelementsWeightCount,
+                'first_elements_weight_count'    => $this->firstElementsWeightCount,
                 'sentence_elements'              => $this->sentenceElements,
+                'sentence_elements_lookup'       => $this->sentenceElementsLookup,
                 'sentence_elements_count'        => $this->sentenceElementsCount,
                 'sentence_elements_weight_count' => $this->sentenceElementsWeightCount,
                 'word_lengths'                   => $this->wordLengths,
+                'word_lengths_lookup'            => $this->wordLengthsLookup,
                 'word_lenghts_count'             => $this->wordLengthsCount,
                 'word_lenghts_weight_count'      => $this->wordLengthsWeightCount,
                 'sentence_lengths'               => $this->sentenceLengths,

@@ -15,10 +15,14 @@ final class Element
         public string $ngram,
         /** @var array<string, int> $children */
         public array $children = [],
-        /** @var array<string, int> $lastChildren */
+        /** @var array<string, int> $childrenLookup */
+        public array $childrenLookup = [],
         public int $childrenCount = 0,
         public int $childrenWeightCount = 0,
+        /** @var array<string, int> $lastChildren */
         public array $lastChildren = [],
+        /** @var array<string, int> $lastChildrenLookup */
+        public array $lastChildrenLookup = [],
         public int $lastChildrenCount = 0,
         public int $lastChildrenWeightCount = 0,
     ) {
@@ -43,10 +47,12 @@ final class Element
         arsort($this->children);
         $this->childrenCount       = count($this->children);
         $this->childrenWeightCount = array_sum($this->children);
+        Model::calculateLookup($this->children, $this->childrenLookup);
 
         arsort($this->lastChildren);
         $this->lastChildrenCount       = count($this->lastChildren);
         $this->lastChildrenWeightCount = array_sum($this->lastChildren);
+        Model::calculateLookup($this->lastChildren, $this->lastChildrenLookup);
 
         return $this;
     }
@@ -55,9 +61,11 @@ final class Element
     {
         return array_filter([
             'c'    => $this->children,
+            'cl'   => $this->childrenLookup,
             'cc'   => $this->childrenCount,
             'cwc'  => $this->childrenWeightCount,
             'lc'   => $this->lastChildren,
+            'lcl'  => $this->lastChildrenLookup,
             'lcc'  => $this->lastChildrenCount,
             'lcwc' => $this->lastChildrenWeightCount,
         ]);
