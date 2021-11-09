@@ -32,17 +32,22 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+            "@normalize",
+            "@validate",
+            "@thanks"
+        ],
         "lint": "php-cs-fixer fix -v",
-        "process": "rector process src",
-        "test:lint": "php-cs-fixer fix -v --dry-run",
-        "test:process": "rector process src --dry-run",
-        "test:types": "phpstan analyse --ansi --memory-limit=-1",
-        "test:unit": "pest --colors=always",
+        "normalize": "@composer normalize --ansi --no-interaction --quiet",
         "test": [
             "@test:lint",
-            "@test:process",
             "@test:types",
             "@test:unit"
-        ]
+        ],
+        "test:lint": "php-cs-fixer fix -v --dry-run",
+        "test:types": "phpstan analyse --ansi --memory-limit=-1",
+        "test:unit": "pest --colors=always",
+        "thanks": "@composer thanks --ansi --no-interaction --quiet",
+        "validate": "@composer validate --strict --ansi --no-interaction"
     }
 }
