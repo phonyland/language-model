@@ -53,11 +53,11 @@ final class LookupList
     public function toArray(): array
     {
         return [
-            'ei'  => $this->elementIndex,
-            'wi'  => $this->weightIndex,
-            'cwi' => $this->cumulativeWeightIndex,
-            'ie'  => $this->indexElements,
-            'sow'  => $this->sumOfWeights,
+            'e'  => $this->elementIndex,
+            'w'  => $this->weightIndex,
+            'cw' => $this->cumulativeWeightIndex,
+            'i'  => $this->indexElements,
+            'sw' => $this->sumOfWeights,
         ];
     }
 }
