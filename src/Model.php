@@ -29,9 +29,9 @@ final class Model
 
     public function __construct(string $name)
     {
-        $this->config = new Config($name);
-        $this->firstElements = new LookupList();
-        $this->wordLengths = new LookupList();
+        $this->config          = new Config($name);
+        $this->firstElements   = new LookupList();
+        $this->wordLengths     = new LookupList();
         $this->sentenceLengths = new LookupList();
     }
 
@@ -39,13 +39,13 @@ final class Model
     {
         foreach ($words as $word) {
             $wordLength = mb_strlen($word);
-            $this->wordLengths->addElement((string)$wordLength);
+            $this->wordLengths->addElement((string) $wordLength);
         }
     }
 
     private function feedSentenceLenghts(int $lenght): void
     {
-        $this->sentenceLengths->addElement((string)$lenght);
+        $this->sentenceLengths->addElement((string) $lenght);
     }
 
     public function feed(string $text): self

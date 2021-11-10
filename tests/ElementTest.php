@@ -18,6 +18,6 @@ it('has an element index', function (): void {
 
     expect($elementData)->toHaveKeys([
         'c',
-        'lc'
+        'lc',
     ]);
 });

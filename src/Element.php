@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
-use Phonyland\NGram\NGramCount;
-
 /***
  * @internal
  */
@@ -16,7 +14,7 @@ final class Element
         public ?LookupList $children = null,
         public ?LookupList $lastChildren = null,
     ) {
-        $this->children = $children ?? new LookupList();
+        $this->children     = $children ?? new LookupList();
         $this->lastChildren = $lastChildren ?? new LookupList();
     }
 

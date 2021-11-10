@@ -37,11 +37,11 @@ final class LookupList
     public function calculate(): self
     {
         asort($this->elements);
-        $this->elementIndex = array_keys($this->elements);
-        $this->weightIndex = array_values($this->elements);
+        $this->elementIndex  = array_keys($this->elements);
+        $this->weightIndex   = array_values($this->elements);
         $this->indexElements = array_flip($this->elementIndex);
-        $this->sumOfWeights = array_sum($this->weightIndex);
-        $this->count = count($this->elements);
+        $this->sumOfWeights  = array_sum($this->weightIndex);
+        $this->count         = count($this->elements);
 
         $totalWeight = 0;
         foreach ($this->weightIndex as $index => $weight) {
