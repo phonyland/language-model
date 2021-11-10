@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
-use Phonyland\NGram\NGramCount;
-
 final class Model
 {
     public Config $config;
@@ -15,47 +13,14 @@ final class Model
 
     public int $elementCount;
 
-    /** @var array<string, int> */
-    public array $firstElements = [];
+    public LookupList $firstElements;
 
-    /** @var array<string, int> */
-    public array $firstElementsLookup = [];
-
-    public int $firstElementsCount;
-
-    public int $firstElementsWeightCount;
-
-    /** @var array<array<string, int>> */
+    /** @var array<\Phonyland\LanguageModel\LookupList> */
     public array $sentenceElements = [];
 
-    /** @var array<string, int */
-    public array $sentenceElementsLookup = [];
+    public LookupList $wordLengths;
 
-    /** @var array<string, int */
-    public array $sentenceElementsCount = [];
-
-    /** @var array<string, int */
-    public array $sentenceElementsWeightCount = [];
-
-    /** @var array<int, int> */
-    public array $wordLengths = [];
-
-    /** @var array<int, int> */
-    public array $wordLengthsLookup = [];
-
-    public int $wordLengthsCount;
-
-    public int $wordLengthsWeightCount;
-
-    /** @var array<int, int> */
-    public array $sentenceLengths = [];
-
-    /** @var array<int, int> */
-    public array $sentenceLengthsLookup = [];
-
-    public int $sentenceLengthsCount;
-
-    public int $sentenceLengthsWeightCount;
+    public LookupList $sentenceLengths;
 
     /** @var array<string> */
     public array $excludedWords = [];
@@ -65,19 +30,22 @@ final class Model
     public function __construct(string $name)
     {
         $this->config = new Config($name);
+        $this->firstElements = new LookupList();
+        $this->wordLengths = new LookupList();
+        $this->sentenceLengths = new LookupList();
     }
 
     private function feedWordLenghts(array $words): void
     {
         foreach ($words as $word) {
             $wordLength = mb_strlen($word);
-            NGramCount::elementOnArray((string) $wordLength, $this->wordLengths);
+            $this->wordLengths->addElement((string)$wordLength);
         }
     }
 
     private function feedSentenceLenghts(int $lenght): void
     {
-        NGramCount::elementOnArray((string) $lenght, $this->sentenceLengths);
+        $this->sentenceLengths->addElement((string)$lenght);
     }
 
     public function feed(string $text): self
@@ -108,21 +76,21 @@ final class Model
                         : ($this->elements[$ngram] = new Element($ngram));
 
                     if ($i === 0) {
-                        NGramCount::elementOnArray($ngram, $this->firstElements);
+                        $this->firstElements->addElement($ngram);
 
                         if ($numberOfWordsInSentence - 1 >= $orderInSentence && $orderInSentence <= ($this->config->numberOfSentenceElements - 1)) {
                             if (!isset($this->sentenceElements[$orderInSentence + 1])) {
-                                $this->sentenceElements[$orderInSentence + 1] = [];
+                                $this->sentenceElements[$orderInSentence + 1] = new LookupList();
                             }
-                            NGramCount::elementOnArray($ngram, $this->sentenceElements[$orderInSentence + 1]);
+                            $this->sentenceElements[$orderInSentence + 1]->addElement($ngram);
                         }
 
                         $positionFromLast = ($numberOfWordsInSentence - 1) - $orderInSentence;
                         if ($positionFromLast <= ($this->config->numberOfSentenceElements - 1) && $positionFromLast >= 0) {
                             if (!isset($this->sentenceElements[($positionFromLast + 1) * -1])) {
-                                $this->sentenceElements[($positionFromLast + 1) * -1] = [];
+                                $this->sentenceElements[($positionFromLast + 1) * -1] = new LookupList();
                             }
-                            NGramCount::elementOnArray($ngram, $this->sentenceElements[($positionFromLast + 1) * -1]);
+                            $this->sentenceElements[($positionFromLast + 1) * -1]->addElement($ngram);
                         }
                     }
 
@@ -143,15 +111,6 @@ final class Model
         return $this;
     }
 
-    public static function calculateLookup(array &$elements, array &$lookup): void
-    {
-        $totalWeight = 0;
-        foreach ($elements as $element => $weight) {
-            $totalWeight += $weight;
-            $lookup[$element] = $totalWeight;
-        }
-    }
-
     private function calculateElements(): void
     {
         /** @var \Phonyland\LanguageModel\Element $element */
@@ -165,41 +124,13 @@ final class Model
         $this->elementCount = count($this->elements);
     }
 
-    private function calculateFirstelements(): void
-    {
-        arsort($this->firstElements);
-        $this->firstElementsCount       = count($this->firstElements);
-        $this->firstElementsWeightCount = array_sum($this->firstElements);
-        self::calculateLookup($this->firstElements, $this->firstElementsLookup);
-    }
-
     private function calculateSentenceElements(): void
     {
-        foreach ($this->sentenceElements as $index => $sentenceElement) {
-            arsort($this->sentenceElements[$index]);
-            $this->sentenceElementsCount[$index]       = count($sentenceElement);
-            $this->sentenceElementsWeightCount[$index] = array_sum($sentenceElement);
-
-            $this->sentenceElementsLookup[$index] = [];
-            self::calculateLookup($this->sentenceElements[$index], $this->sentenceElementsLookup[$index]);
+        /** @var \Phonyland\LanguageModel\LookupList $sentenceElement */
+        foreach ($this->sentenceElements as $sentenceElement) {
+            $sentenceElement->calculate();
         }
         krsort($this->sentenceElements);
-    }
-
-    private function calculateWordLenghts(): void
-    {
-        arsort($this->wordLengths);
-        $this->wordLengthsCount       = count($this->wordLengths);
-        $this->wordLengthsWeightCount = array_sum($this->wordLengths);
-        self::calculateLookup($this->wordLengths, $this->wordLengthsLookup);
-    }
-
-    private function calculateSentenceLenghts(): void
-    {
-        arsort($this->sentenceLengths);
-        $this->sentenceLengthsCount       = count($this->sentenceLengths);
-        $this->sentenceLengthsWeightCount = array_sum($this->sentenceLengths);
-        self::calculateLookup($this->sentenceLengths, $this->sentenceLengthsLookup);
     }
 
     private function calculateExludedWords(): void
@@ -215,10 +146,10 @@ final class Model
     public function calculate(): self
     {
         $this->calculateElements();
-        $this->calculateFirstelements();
+        $this->firstElements->calculate();
+        $this->wordLengths->calculate();
+        $this->sentenceLengths->calculate();
         $this->calculateSentenceElements();
-        $this->calculateWordLenghts();
-        $this->calculateSentenceLenghts();
         $this->calculateExludedWords();
 
         return $this;
@@ -229,25 +160,18 @@ final class Model
         return [
             'config'   => $this->config->toArray(),
             'data'     => [
-                'elements'                       => $this->elements,
-                'elements_count'                 => $this->elementCount,
-                'first_elements'                 => $this->firstElements,
-                'first_elements_lookup'          => $this->firstElementsLookup,
-                'first_elements_count'           => $this->firstElementsCount,
-                'first_elements_weight_count'    => $this->firstElementsWeightCount,
-                'sentence_elements'              => $this->sentenceElements,
-                'sentence_elements_lookup'       => $this->sentenceElementsLookup,
-                'sentence_elements_count'        => $this->sentenceElementsCount,
-                'sentence_elements_weight_count' => $this->sentenceElementsWeightCount,
-                'word_lengths'                   => $this->wordLengths,
-                'word_lengths_lookup'            => $this->wordLengthsLookup,
-                'word_lenghts_count'             => $this->wordLengthsCount,
-                'word_lenghts_weight_count'      => $this->wordLengthsWeightCount,
-                'sentence_lengths'               => $this->sentenceLengths,
-                'sentence_lenghts_count'         => $this->sentenceLengthsCount,
-                'sentence_lenghts_weight_count'  => $this->sentenceLengthsWeightCount,
-                'excluded_words'                 => $this->excludedWords,
-                'excluded_words_count'           => $this->excludedWordsCount,
+                'elements'          => $this->elements,
+                'elements_count'    => $this->elementCount,
+                'first_elements'    => $this->firstElements->toArray(),
+                'sentence_elements' => array_map(static function (LookupList $sentenceElement) {
+                    return $sentenceElement->calculate()->toArray();
+                }, $this->sentenceElements),
+                'word_lengths'      => $this->wordLengths->toArray(),
+                'sentence_lengths'  => $this->sentenceLengths->toArray(),
+            ],
+            'excluded' => [
+                'words' => $this->excludedWords,
+                'count' => $this->excludedWordsCount,
             ],
         ];
     }
