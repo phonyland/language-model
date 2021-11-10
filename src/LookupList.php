@@ -21,6 +21,7 @@ final class LookupList
         /** @var array<string, int> $indexElements */
         protected array $indexElements = [],
         protected int $sumOfWeights = 0,
+        protected int $count = 0,
         /** @var array<string, int> $elements */
         protected array $elements = [],
     ) {
@@ -40,6 +41,7 @@ final class LookupList
         $this->weightIndex = array_values($this->elements);
         $this->indexElements = array_flip($this->elementIndex);
         $this->sumOfWeights = array_sum($this->weightIndex);
+        $this->count = count($this->elements);
 
         $totalWeight = 0;
         foreach ($this->weightIndex as $index => $weight) {
@@ -58,6 +60,7 @@ final class LookupList
             'cw' => $this->cumulativeWeightIndex,
             'i'  => $this->indexElements,
             'sw' => $this->sumOfWeights,
+            'c'  => $this->count,
         ];
     }
 }
