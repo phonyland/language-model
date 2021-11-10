@@ -40,6 +40,9 @@ final class Element
         return $this;
     }
 
+    /**
+     * @return array<string, array<string, mixed>>
+     */
     public function toArray(): array
     {
         return [

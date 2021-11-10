@@ -22,7 +22,7 @@ final class Model
 
     public LookupList $sentenceLengths;
 
-    /** @var array<string> */
+    /** @var array<int, string> */
     public array $excludedWords = [];
 
     public int $excludedWordsCount;
@@ -35,6 +35,9 @@ final class Model
         $this->sentenceLengths = new LookupList();
     }
 
+    /**
+     * @param  array<string>  $words
+     */
     private function feedWordLenghts(array $words): void
     {
         foreach ($words as $word) {
