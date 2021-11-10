@@ -13,16 +13,16 @@ final class LookupList
 {
     public function __construct(
         /** @var array<int, string> $elementIndex */
-        public array $elementIndex = [],
+        protected array $elementIndex = [],
         /** @var array<int, int> $weightIndex */
-        public array $weightIndex = [],
+        protected array $weightIndex = [],
         /** @var array<int, int> $cumulativeWeightIndex */
-        public array $cumulativeWeightIndex = [],
+        protected array $cumulativeWeightIndex = [],
         /** @var array<string, int> $indexElements */
-        public array $indexElements = [],
-        public int $sumOfWeights = 0,
+        protected array $indexElements = [],
+        protected int $sumOfWeights = 0,
         /** @var array<string, int> $elements */
-        private array $elements = [],
+        protected array $elements = [],
     ) {
     }
 
