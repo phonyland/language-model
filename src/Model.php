@@ -36,7 +36,7 @@ final class Model
     }
 
     /**
-     * @param  array<string>  $words
+     * @param array<string> $words
      */
     private function feedWordLenghts(array $words): void
     {
