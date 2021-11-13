@@ -53,17 +53,21 @@ final class Model
 
     public function feed(string $text): self
     {
-        $tokenizedSentences = $this->config->tokenizer->tokenizeBySentences($text);
+        $tokenizedSentences = $this->config->tokenizer->tokenizeBySentences(
+            $text,
+            $this->config->minWordLength
+        );
 
         foreach ($tokenizedSentences as $sentence) {
+            $numberOfWordsInSentence = count($sentence);
+
             $this->feedWordLenghts($sentence);
-            $this->feedSentenceLenghts(count($sentence));
+            $this->feedSentenceLenghts($numberOfWordsInSentence);
 
             if ($this->config->excludeOriginals === true) {
                 $this->excludedWords[] = $sentence;
             }
 
-            $numberOfWordsInSentence = count($sentence);
             foreach ($sentence as $orderInSentence => $token) {
                 $ngramCount = mb_strlen($token) - $this->config->nGramSize + 1;
 
