@@ -7,9 +7,7 @@ namespace Phonyland\LanguageModel;
 use Phonyland\NGram\Tokenizer;
 use RuntimeException;
 
-/***
- * @internal
- */
+/*** @internal */
 final class Config
 {
     // region Attributes
@@ -17,7 +15,7 @@ final class Config
     public string $name                  = 'Phony Language Model';
     public ?Tokenizer $tokenizer         = null;
     public int $n                        = 2;
-    public int $minLenght                = 2;
+    public int $minWordLength            = 2;
     public bool $unique                  = false;
     public bool $excludeOriginals        = false;
     public int $numberOfSentenceElements = 5;
@@ -31,6 +29,7 @@ final class Config
         if ($name !== null) {
             $this->name = $name;
         }
+
         if ($tokenizer !== null) {
             $this->tokenizer = $tokenizer;
         }
@@ -44,7 +43,7 @@ final class Config
         return [
             'name'                        => $this->name,
             'n'                           => $this->n,
-            'min_lenght'                  => $this->minLenght,
+            'min_word_length'             => $this->minWordLength,
             'unique'                      => $this->unique,
             'exclude_originals'           => $this->excludeOriginals,
             'number_of_sentence_elements' => $this->numberOfSentenceElements,
@@ -81,13 +80,13 @@ final class Config
         return $this;
     }
 
-    public function minLenght(int $minLenght): Config
+    public function minWordLength(int $minWordLength): Config
     {
-        if ($minLenght < $this->n) {
-            throw new RuntimeException('The $minLength must be greater than or equal to $n');
+        if ($minWordLength < $this->n) {
+            throw new RuntimeException('Minimum word length must be greater than or equal to $n');
         }
 
-        $this->minLenght = $minLenght;
+        $this->minWordLength = $minWordLength;
 
         return $this;
     }
