@@ -108,7 +108,7 @@ final class Config
     public function numberOfSentenceElements(int $numberOfSentenceElements): Config
     {
         if ($numberOfSentenceElements < 0) {
-            throw new RuntimeException('The $numberOfSentenceElements must be greater than or equal to 0');
+            throw new RuntimeException('Number of sentence elements must be greater than or equal to 0');
         }
 
         $this->numberOfSentenceElements = $numberOfSentenceElements;

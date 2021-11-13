@@ -13,10 +13,10 @@ test('Model can be build with count', function (): void {
                   ->minWordLength(2)
                   ->unique(false)
                   ->excludeOriginals(true)
-                  ->numberOfSentenceElements(3)
+                  ->numberOfSentenceElements(2)
                   ->tokenizer((new Tokenizer())
                       ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-                      ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL)
+                      ->addWordFilterRule(TokenizerFilter::ALPHANUMBERICAL)
                       ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
                       ->toLowercase()
                   );
@@ -44,11 +44,11 @@ test('Model can be build with count', function (): void {
                 'min_word_length'             => 2,
                 'unique'                      => false,
                 'exclude_originals'           => true,
-                'number_of_sentence_elements' => 3,
+                'number_of_sentence_elements' => 2,
                 'tokenizer'                   => [
                         'word_filters' => [
                                 0 => [
-                                        'pattern'     => '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/',
+                                        'pattern'     => '/[^0-9a-z]+/',
                                         'replacement' => '',
                                     ],
                             ],
@@ -3145,42 +3145,6 @@ test('Model can be build with count', function (): void {
                         'c'  => 33,
                     ],
                 'sentence_elements' => [
-                        3 => [
-                                'e' => [
-                                        0 => 'br',
-                                        1 => 'ny',
-                                        2 => 'bl',
-                                        3 => 'my',
-                                        4 => 'qu',
-                                        5 => 'bo',
-                                    ],
-                                'w' => [
-                                        0 => 1,
-                                        1 => 1,
-                                        2 => 2,
-                                        3 => 2,
-                                        4 => 3,
-                                        5 => 4,
-                                    ],
-                                'cw' => [
-                                        0 => 1,
-                                        1 => 2,
-                                        2 => 4,
-                                        3 => 6,
-                                        4 => 9,
-                                        5 => 13,
-                                    ],
-                                'i' => [
-                                        'br' => 0,
-                                        'ny' => 1,
-                                        'bl' => 2,
-                                        'my' => 3,
-                                        'qu' => 4,
-                                        'bo' => 5,
-                                    ],
-                                'sw' => 13,
-                                'c'  => 6,
-                            ],
                         2 => [
                                 'e' => [
                                         0 => 'qu',
@@ -3341,50 +3305,6 @@ test('Model can be build with count', function (): void {
                                         'ju' => 5,
                                         'of' => 6,
                                         'li' => 7,
-                                    ],
-                                'sw' => 13,
-                                'c'  => 8,
-                            ],
-                        -3 => [
-                                'e' => [
-                                        0 => 'th',
-                                        1 => 'gr',
-                                        2 => 'to',
-                                        3 => 'ju',
-                                        4 => 'da',
-                                        5 => 'wi',
-                                        6 => 'sp',
-                                        7 => 'do',
-                                    ],
-                                'w' => [
-                                        0 => 1,
-                                        1 => 1,
-                                        2 => 1,
-                                        3 => 2,
-                                        4 => 2,
-                                        5 => 2,
-                                        6 => 2,
-                                        7 => 2,
-                                    ],
-                                'cw' => [
-                                        0 => 1,
-                                        1 => 2,
-                                        2 => 3,
-                                        3 => 5,
-                                        4 => 7,
-                                        5 => 9,
-                                        6 => 11,
-                                        7 => 13,
-                                    ],
-                                'i' => [
-                                        'th' => 0,
-                                        'gr' => 1,
-                                        'to' => 2,
-                                        'ju' => 3,
-                                        'da' => 4,
-                                        'wi' => 5,
-                                        'sp' => 6,
-                                        'do' => 7,
                                     ],
                                 'sw' => 13,
                                 'c'  => 8,
