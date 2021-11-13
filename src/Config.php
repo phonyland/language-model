@@ -14,7 +14,7 @@ final class Config
 
     public string $name                  = 'Phony Language Model';
     public ?Tokenizer $tokenizer         = null;
-    public int $n                        = 2;
+    public int $nGramSize                = 2;
     public int $minWordLength            = 2;
     public bool $unique                  = false;
     public bool $excludeOriginals        = false;
@@ -42,7 +42,7 @@ final class Config
     {
         return [
             'name'                        => $this->name,
-            'n'                           => $this->n,
+            'n_gram_size'                 => $this->nGramSize,
             'min_word_length'             => $this->minWordLength,
             'unique'                      => $this->unique,
             'exclude_originals'           => $this->excludeOriginals,
@@ -69,20 +69,20 @@ final class Config
         return $this;
     }
 
-    public function n(int $n): Config
+    public function nGramSize(int $nGramSize): Config
     {
-        if ($n < 1) {
-            throw new RuntimeException('The $n must be greater than 0');
+        if ($nGramSize < 1) {
+            throw new RuntimeException('The n-gram size must be greater than 0');
         }
 
-        $this->n = $n;
+        $this->nGramSize = $nGramSize;
 
         return $this;
     }
 
     public function minWordLength(int $minWordLength): Config
     {
-        if ($minWordLength < $this->n) {
+        if ($minWordLength < $this->nGramSize) {
             throw new RuntimeException('Minimum word length must be greater than or equal to $n');
         }
 

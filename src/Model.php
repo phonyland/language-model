@@ -65,13 +65,13 @@ final class Model
 
             $numberOfWordsInSentence = count($sentence);
             foreach ($sentence as $orderInSentence => $token) {
-                $ngramCount = mb_strlen($token) - $this->config->n + 1;
+                $ngramCount = mb_strlen($token) - $this->config->nGramSize + 1;
 
                 /** @var \Phonyland\LanguageModel\Element|null $previousElement */
                 $previousElement = null;
 
                 for ($i = 0; $i < $ngramCount; $i++) {
-                    $ngram = mb_substr($token, $i, $this->config->n);
+                    $ngram = mb_substr($token, $i, $this->config->nGramSize);
 
                     /** @var \Phonyland\LanguageModel\Element|null $ngramElement */
                     $ngramElement                 = array_key_exists($ngram, $this->elements)

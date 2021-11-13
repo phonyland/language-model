@@ -9,7 +9,7 @@ use Phonyland\NGram\TokenizerFilter;
 test('Model can be build with count', function (): void {
     $model = new Model('Test Model');
 
-    $model->config->n(2)
+    $model->config->nGramSize(2)
                   ->minWordLength(2)
                   ->unique(false)
                   ->excludeOriginals(true)
@@ -40,8 +40,8 @@ test('Model can be build with count', function (): void {
     $expected = [
         'config' => [
                 'name'                        => 'Test Model',
-                'n'                           => 2,
-                'min_lenght'                  => 2,
+                'n_gram_size'                 => 2,
+                'min_word_length'             => 2,
                 'unique'                      => false,
                 'exclude_originals'           => true,
                 'number_of_sentence_elements' => 3,
