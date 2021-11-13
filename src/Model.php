@@ -163,12 +163,13 @@ final class Model
         return [
             'config'   => $this->config->toArray(),
             'data'     => [
-                'elements'          => $this->elements,
-                'elements_count'    => $this->elementCount,
-                'first_elements'    => $this->firstElements->toArray(),
-                'sentence_elements' => array_map(static function (LookupList $sentenceElement) {
-                    return $sentenceElement->calculate()->toArray();
-                }, $this->sentenceElements),
+                'elements'                            => $this->elements,
+                'elements_count'                      => $this->elementCount,
+                'first_elements'                      => $this->firstElements->toArray(),
+                'sentence_elements'                   => array_map(
+                    static fn (LookupList $se): array => $se->calculate()->toArray(),
+                    $this->sentenceElements
+                ),
                 'word_lengths'      => $this->wordLengths->toArray(),
                 'sentence_lengths'  => $this->sentenceLengths->toArray(),
             ],
