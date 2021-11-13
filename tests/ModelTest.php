@@ -10,10 +10,9 @@ test('Model can be build with count', function (): void {
     $model = new Model('Test Model');
 
     $model->config->n(2)
-                  ->minLenght(2)
+                  ->minWordLength(2)
                   ->unique(false)
                   ->excludeOriginals(true)
-                  ->frequencyPrecision(7)
                   ->numberOfSentenceElements(3)
                   ->tokenizer((new Tokenizer())
                       ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
@@ -45,7 +44,6 @@ test('Model can be build with count', function (): void {
                 'min_lenght'                  => 2,
                 'unique'                      => false,
                 'exclude_originals'           => true,
-                'frequency_precision'         => 7,
                 'number_of_sentence_elements' => 3,
                 'tokenizer'                   => [
                         'word_filters' => [

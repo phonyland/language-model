@@ -20,7 +20,6 @@ final class Config
     public int $minLenght                = 2;
     public bool $unique                  = false;
     public bool $excludeOriginals        = false;
-    public int $frequencyPrecision       = 7;
     public int $numberOfSentenceElements = 5;
 
     // endregion
@@ -48,7 +47,6 @@ final class Config
             'min_lenght'                  => $this->minLenght,
             'unique'                      => $this->unique,
             'exclude_originals'           => $this->excludeOriginals,
-            'frequency_precision'         => $this->frequencyPrecision,
             'number_of_sentence_elements' => $this->numberOfSentenceElements,
             'tokenizer'                   => $this->tokenizer->toArray(),
         ];
@@ -104,17 +102,6 @@ final class Config
     public function excludeOriginals(bool $excludeOriginals): Config
     {
         $this->excludeOriginals = $excludeOriginals;
-
-        return $this;
-    }
-
-    public function frequencyPrecision(int $frequencyPrecision): Config
-    {
-        if ($frequencyPrecision < 1) {
-            throw new RuntimeException('The $frequencyPrecision must be greater than 0');
-        }
-
-        $this->frequencyPrecision = $frequencyPrecision;
 
         return $this;
     }
