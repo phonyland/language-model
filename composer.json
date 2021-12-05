@@ -1,8 +1,8 @@
 {
     "name": "phonyland/language-model",
-    "type": "library",
     "description": "\u2699\ufe0f Language Model for \ud83d\ude43 Phony Framework",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Yunus Emre Delig\u00f6z",
@@ -16,9 +16,8 @@
     "require-dev": {
         "phonyland/dev-tools": "dev-master"
     },
-    "config": {
-        "sort-packages": true
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Phonyland\\LanguageModel\\": "src/"
@@ -29,8 +28,9 @@
             "Phonyland\\LanguageModel\\Tests\\": "tests"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
     "scripts": {
         "post-autoload-dump": [
             "@normalize",
