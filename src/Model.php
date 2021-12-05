@@ -38,7 +38,7 @@ final class Model
     /**
      * @param array<string> $words
      */
-    private function feedWordLenghts(array $words): void
+    private function feedWordLengths(array $words): void
     {
         foreach ($words as $word) {
             $wordLength = mb_strlen($word);
@@ -46,9 +46,9 @@ final class Model
         }
     }
 
-    private function feedSentenceLenghts(int $lenght): void
+    private function feedSentenceLengths(int $length): void
     {
-        $this->sentenceLengths->addElement((string) $lenght);
+        $this->sentenceLengths->addElement((string) $length);
     }
 
     public function feed(string $text): self
@@ -61,8 +61,8 @@ final class Model
         foreach ($tokenizedSentences as $sentence) {
             $numberOfWordsInSentence = count($sentence);
 
-            $this->feedWordLenghts($sentence);
-            $this->feedSentenceLenghts($numberOfWordsInSentence);
+            $this->feedWordLengths($sentence);
+            $this->feedSentenceLengths($numberOfWordsInSentence);
 
             if ($this->config->excludeOriginals === true) {
                 $this->excludedWords[] = $sentence;
