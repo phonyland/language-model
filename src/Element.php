@@ -14,7 +14,7 @@ final class Element
         public ?LookupList $children = null,
         public ?LookupList $lastChildren = null,
     ) {
-        $this->children     = $children ?? new LookupList();
+        $this->children = $children ?? new LookupList();
         $this->lastChildren = $lastChildren ?? new LookupList();
     }
 
