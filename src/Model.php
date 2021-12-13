@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
-final class Model
+class Model
 {
     public Config $config;
 
