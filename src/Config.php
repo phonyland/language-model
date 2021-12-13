@@ -7,16 +7,23 @@ namespace Phonyland\LanguageModel;
 use Phonyland\NGram\Tokenizer;
 use RuntimeException;
 
-/*** @internal */
+/***
+ * @internal
+ */
 final class Config
 {
     // region Attributes
 
-    public string $name                  = 'Phony Language Model';
-    public ?Tokenizer $tokenizer         = null;
-    public int $nGramSize                = 2;
-    public int $minWordLength            = 2;
-    public bool $excludeOriginals        = false;
+    public string $name = 'Phony Language Model';
+
+    public ?Tokenizer $tokenizer = null;
+
+    public int $nGramSize = 2;
+
+    public int $minWordLength = 2;
+
+    public bool $excludeOriginals = false;
+
     public int $numberOfSentenceElements = 5;
 
     // endregion
@@ -53,21 +60,21 @@ final class Config
 
     // region Fluent Setters
 
-    public function name(string $name): Config
+    public function name(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function tokenizer(Tokenizer $tokenizer): Config
+    public function tokenizer(Tokenizer $tokenizer): self
     {
         $this->tokenizer = $tokenizer;
 
         return $this;
     }
 
-    public function nGramSize(int $nGramSize): Config
+    public function nGramSize(int $nGramSize): self
     {
         if ($nGramSize < 1) {
             throw new RuntimeException('The n-gram size must be greater than 0');
@@ -78,7 +85,7 @@ final class Config
         return $this;
     }
 
-    public function minWordLength(int $minWordLength): Config
+    public function minWordLength(int $minWordLength): self
     {
         if ($minWordLength < $this->nGramSize) {
             throw new RuntimeException('Minimum word length must be greater than or equal to $n');
@@ -89,14 +96,14 @@ final class Config
         return $this;
     }
 
-    public function excludeOriginals(bool $excludeOriginals): Config
+    public function excludeOriginals(bool $excludeOriginals): self
     {
         $this->excludeOriginals = $excludeOriginals;
 
         return $this;
     }
 
-    public function numberOfSentenceElements(int $numberOfSentenceElements): Config
+    public function numberOfSentenceElements(int $numberOfSentenceElements): self
     {
         if ($numberOfSentenceElements < 0) {
             throw new RuntimeException('Number of sentence elements must be greater than or equal to 0');
