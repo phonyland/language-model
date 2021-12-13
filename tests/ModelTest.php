@@ -6,12 +6,11 @@ use Phonyland\LanguageModel\Model;
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
 
-test('Model can be build with count', function (): void {
+test('A Phony Model can be build', function (): void {
     $model = new Model('Test Model');
 
     $model->config->nGramSize(2)
                   ->minWordLength(2)
-                  ->unique(false)
                   ->excludeOriginals(true)
                   ->numberOfSentenceElements(2)
                   ->tokenizer((new Tokenizer())

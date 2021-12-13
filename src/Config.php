@@ -16,7 +16,6 @@ final class Config
     public ?Tokenizer $tokenizer         = null;
     public int $nGramSize                = 2;
     public int $minWordLength            = 2;
-    public bool $unique                  = false;
     public bool $excludeOriginals        = false;
     public int $numberOfSentenceElements = 5;
 
@@ -44,7 +43,6 @@ final class Config
             'name'                        => $this->name,
             'n_gram_size'                 => $this->nGramSize,
             'min_word_length'             => $this->minWordLength,
-            'unique'                      => $this->unique,
             'exclude_originals'           => $this->excludeOriginals,
             'number_of_sentence_elements' => $this->numberOfSentenceElements,
             'tokenizer'                   => $this->tokenizer->toArray(),
@@ -87,13 +85,6 @@ final class Config
         }
 
         $this->minWordLength = $minWordLength;
-
-        return $this;
-    }
-
-    public function unique(bool $unique): Config
-    {
-        $this->unique = $unique;
 
         return $this;
     }
