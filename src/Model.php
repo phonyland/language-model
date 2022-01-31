@@ -162,6 +162,7 @@ class Model
     private function calculateExludedWords(): void
     {
         // Flatten and unique exluded word arrays and sort
+        // @phpstan-ignore-next-line
         $this->excludedWords = array_unique(array_merge(...$this->excludedWords));
 
         sort($this->excludedWords);
