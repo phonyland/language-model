@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
-use Phonyland\NGram\Tokenizer;
 use RuntimeException;
+use Phonyland\NGram\Tokenizer;
 
 /***
  * @internal
@@ -14,23 +14,18 @@ final class Config
 {
     // region Attributes
 
-    public string $name = 'Phony Language Model';
-
-    public ?Tokenizer $tokenizer = null;
-
-    public int $nGramSize = 2;
-
-    public int $minWordLength = 2;
-
-    public bool $excludeOriginals = false;
-
+    public string $name                  = 'Phony Language Model';
+    public ?Tokenizer $tokenizer         = null;
+    public int $nGramSize                = 2;
+    public int $minWordLength            = 2;
+    public bool $excludeOriginals        = false;
     public int $numberOfSentenceElements = 5;
 
     // endregion
 
     // region Public Methods
 
-    public function __construct(?string $name = null, ?Tokenizer $tokenizer = null)
+    public function __construct(string $name = null, Tokenizer $tokenizer = null)
     {
         if ($name !== null) {
             $this->name = $name;

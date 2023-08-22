@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Phonyland\LanguageModel\LookupList;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->lookupList = (new LookupList())
         ->addElement('one')
         ->addElement('two')
