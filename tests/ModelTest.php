@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Phonyland\LanguageModel\Model;
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
+use Phonyland\NGram\TokenizerFilterType;
 
 test('A Phony Model can be build', function (): void {
     $model = new Model('Test Model');
@@ -15,8 +16,8 @@ test('A Phony Model can be build', function (): void {
                   ->numberOfSentenceElements(2)
                   ->tokenizer(
                       (new Tokenizer())
-                      ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-                      ->addWordFilterRule(TokenizerFilter::ALPHANUMBERICAL)
+                      ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
+                      ->addWordFilterRule(TokenizerFilterType::ALPHANUMBERICAL)
                       ->addSentenceSeparatorPattern(['.', '?', '!', ':', ';', '\n'])
                       ->toLowercase()
                   );

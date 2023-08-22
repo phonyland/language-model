@@ -29,7 +29,7 @@ final class LookupList
 
     public function addElement(string $element): self
     {
-        NGramCount::elementOnArray($element, $this->elements);
+        NGramCount::incrementElementCount($element, $this->elements);
 
         return $this;
     }
