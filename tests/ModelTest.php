@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Phonyland\NGram\Tokenizer;
 use Phonyland\LanguageModel\Model;
+use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilterType;
 
 test('A Phony Model can be build', function (): void {
@@ -39,15 +39,15 @@ test('A Phony Model can be build', function (): void {
 
     $expected = [
         'config' => [
-            'name'                        => 'Test Model',
-            'n_gram_size'                 => 4,
-            'min_word_length'             => 4,
-            'exclude_originals'           => true,
+            'name' => 'Test Model',
+            'n_gram_size' => 4,
+            'min_word_length' => 4,
+            'exclude_originals' => true,
             'number_of_sentence_elements' => 2,
-            'tokenizer'                   => [
+            'tokenizer' => [
                 'word_filters' => [
                     0 => [
-                        'pattern'     => '/[^0-9a-z]+/',
+                        'pattern' => '/[^0-9a-z]+/',
                         'replacement' => '',
                     ],
                 ],
@@ -82,7 +82,7 @@ test('A Phony Model can be build', function (): void {
                             'ckda' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -94,7 +94,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'altz' => [
@@ -108,7 +108,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -120,7 +120,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'ards' => [
@@ -134,7 +134,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -146,7 +146,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'artz' => [
@@ -160,7 +160,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -172,7 +172,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'blac' => [
@@ -186,7 +186,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -202,7 +202,7 @@ test('A Phony Model can be build', function (): void {
                             'lack' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'boxi' => [
@@ -220,7 +220,7 @@ test('A Phony Model can be build', function (): void {
                             'oxin' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -232,7 +232,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'bras' => [
@@ -246,7 +246,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -258,7 +258,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'brow' => [
@@ -272,7 +272,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -288,7 +288,7 @@ test('A Phony Model can be build', function (): void {
                             'rown' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'ckda' => [
@@ -306,7 +306,7 @@ test('A Phony Model can be build', function (): void {
                             'kdaw' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -318,7 +318,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'ckly' => [
@@ -332,7 +332,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -344,7 +344,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'daft' => [
@@ -358,7 +358,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -370,7 +370,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'daws' => [
@@ -384,7 +384,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -396,7 +396,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'doze' => [
@@ -410,7 +410,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -426,7 +426,7 @@ test('A Phony Model can be build', function (): void {
                             'ozen' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'dwar' => [
@@ -440,7 +440,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -456,7 +456,7 @@ test('A Phony Model can be build', function (): void {
                             'warf' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'ebra' => [
@@ -470,7 +470,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -486,7 +486,7 @@ test('A Phony Model can be build', function (): void {
                             'bras' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'exin' => [
@@ -504,7 +504,7 @@ test('A Phony Model can be build', function (): void {
                             'xing' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -516,7 +516,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'five' => [
@@ -530,7 +530,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -542,7 +542,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'glib' => [
@@ -556,7 +556,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -568,7 +568,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'grab' => [
@@ -582,7 +582,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -598,7 +598,7 @@ test('A Phony Model can be build', function (): void {
                             'rabs' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'hinx' => [
@@ -612,7 +612,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -624,7 +624,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'ickl' => [
@@ -638,7 +638,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -654,7 +654,7 @@ test('A Phony Model can be build', function (): void {
                             'ckly' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'ingl' => [
@@ -668,7 +668,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -684,7 +684,7 @@ test('A Phony Model can be build', function (): void {
                             'ngly' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'iquo' => [
@@ -698,7 +698,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -714,7 +714,7 @@ test('A Phony Model can be build', function (): void {
                             'quor' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'ived' => [
@@ -728,7 +728,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -740,7 +740,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'izar' => [
@@ -758,7 +758,7 @@ test('A Phony Model can be build', function (): void {
                             'zard' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -770,7 +770,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'jack' => [
@@ -788,7 +788,7 @@ test('A Phony Model can be build', function (): void {
                             'ackd' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -800,7 +800,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'jive' => [
@@ -814,7 +814,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -830,7 +830,7 @@ test('A Phony Model can be build', function (): void {
                             'ived' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'jock' => [
@@ -844,7 +844,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -860,7 +860,7 @@ test('A Phony Model can be build', function (): void {
                             'ocks' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'judg' => [
@@ -874,7 +874,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -890,7 +890,7 @@ test('A Phony Model can be build', function (): void {
                             'udge' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'jugs' => [
@@ -904,7 +904,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -916,7 +916,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'jump' => [
@@ -930,7 +930,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -946,7 +946,7 @@ test('A Phony Model can be build', function (): void {
                             'umps' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'kdaw' => [
@@ -960,7 +960,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -976,7 +976,7 @@ test('A Phony Model can be build', function (): void {
                             'daws' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'lack' => [
@@ -990,7 +990,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1002,7 +1002,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'lazy' => [
@@ -1016,7 +1016,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1028,7 +1028,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'liqu' => [
@@ -1046,7 +1046,7 @@ test('A Phony Model can be build', function (): void {
                             'iquo' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1058,7 +1058,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'love' => [
@@ -1072,7 +1072,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1084,7 +1084,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'ngly' => [
@@ -1098,7 +1098,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1110,7 +1110,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'nymp' => [
@@ -1124,7 +1124,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1140,7 +1140,7 @@ test('A Phony Model can be build', function (): void {
                             'ymph' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'ocks' => [
@@ -1154,7 +1154,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1166,7 +1166,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'over' => [
@@ -1180,7 +1180,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1192,7 +1192,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'oxin' => [
@@ -1206,7 +1206,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1222,7 +1222,7 @@ test('A Phony Model can be build', function (): void {
                             'xing' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'ozen' => [
@@ -1236,7 +1236,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1248,7 +1248,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'pack' => [
@@ -1262,7 +1262,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1274,7 +1274,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'phin' => [
@@ -1288,7 +1288,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1304,7 +1304,7 @@ test('A Phony Model can be build', function (): void {
                             'hinx' => 0,
                         ],
                         'sw' => 4,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'quar' => [
@@ -1322,7 +1322,7 @@ test('A Phony Model can be build', function (): void {
                             'uart' => 0,
                         ],
                         'sw' => 4,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1334,7 +1334,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'quic' => [
@@ -1352,7 +1352,7 @@ test('A Phony Model can be build', function (): void {
                             'uick' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1368,7 +1368,7 @@ test('A Phony Model can be build', function (): void {
                             'uick' => 0,
                         ],
                         'sw' => 4,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'quiz' => [
@@ -1382,7 +1382,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1394,7 +1394,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'quor' => [
@@ -1408,7 +1408,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1420,7 +1420,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'rabs' => [
@@ -1434,7 +1434,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1446,7 +1446,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'rown' => [
@@ -1460,7 +1460,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1472,7 +1472,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'sphi' => [
@@ -1490,7 +1490,7 @@ test('A Phony Model can be build', function (): void {
                             'phin' => 0,
                         ],
                         'sw' => 4,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1502,7 +1502,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'uart' => [
@@ -1516,7 +1516,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1532,7 +1532,7 @@ test('A Phony Model can be build', function (): void {
                             'artz' => 0,
                         ],
                         'sw' => 4,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'udge' => [
@@ -1546,7 +1546,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1558,7 +1558,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'uick' => [
@@ -1576,7 +1576,7 @@ test('A Phony Model can be build', function (): void {
                             'ickl' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1588,7 +1588,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'umps' => [
@@ -1602,7 +1602,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1614,7 +1614,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'vexi' => [
@@ -1632,7 +1632,7 @@ test('A Phony Model can be build', function (): void {
                             'exin' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1644,7 +1644,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'walt' => [
@@ -1658,7 +1658,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1674,7 +1674,7 @@ test('A Phony Model can be build', function (): void {
                             'altz' => 0,
                         ],
                         'sw' => 1,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'warf' => [
@@ -1688,7 +1688,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1700,7 +1700,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'with' => [
@@ -1714,7 +1714,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1726,7 +1726,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'wiza' => [
@@ -1744,7 +1744,7 @@ test('A Phony Model can be build', function (): void {
                             'izar' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1756,7 +1756,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'xing' => [
@@ -1774,7 +1774,7 @@ test('A Phony Model can be build', function (): void {
                             'ingl' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1786,7 +1786,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'ymph' => [
@@ -1800,7 +1800,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1812,7 +1812,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
                 'zard' => [
@@ -1826,7 +1826,7 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                     'lc' => [
                         'e' => [
@@ -1842,7 +1842,7 @@ test('A Phony Model can be build', function (): void {
                             'ards' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                 ],
                 'zebr' => [
@@ -1860,7 +1860,7 @@ test('A Phony Model can be build', function (): void {
                             'ebra' => 0,
                         ],
                         'sw' => 2,
-                        'c'  => 1,
+                        'c' => 1,
                     ],
                     'lc' => [
                         'e' => [
@@ -1872,23 +1872,23 @@ test('A Phony Model can be build', function (): void {
                         'i' => [
                         ],
                         'sw' => 0,
-                        'c'  => 0,
+                        'c' => 0,
                     ],
                 ],
             ],
             'elements_count' => 64,
             'first_elements' => [
                 'e' => [
-                    0  => 'brow',
-                    1  => 'over',
-                    2  => 'lazy',
-                    3  => 'jive',
-                    4  => 'grab',
-                    5  => 'walt',
-                    6  => 'glib',
-                    7  => 'jock',
-                    8  => 'quiz',
-                    9  => 'dwar',
+                    0 => 'brow',
+                    1 => 'over',
+                    2 => 'lazy',
+                    3 => 'jive',
+                    4 => 'grab',
+                    5 => 'walt',
+                    6 => 'glib',
+                    7 => 'jock',
+                    8 => 'quiz',
+                    9 => 'dwar',
                     10 => 'nymp',
                     11 => 'blac',
                     12 => 'judg',
@@ -1911,16 +1911,16 @@ test('A Phony Model can be build', function (): void {
                     29 => 'quic',
                 ],
                 'w' => [
-                    0  => 1,
-                    1  => 1,
-                    2  => 1,
-                    3  => 1,
-                    4  => 1,
-                    5  => 1,
-                    6  => 1,
-                    7  => 1,
-                    8  => 1,
-                    9  => 1,
+                    0 => 1,
+                    1 => 1,
+                    2 => 1,
+                    3 => 1,
+                    4 => 1,
+                    5 => 1,
+                    6 => 1,
+                    7 => 1,
+                    8 => 1,
+                    9 => 1,
                     10 => 2,
                     11 => 2,
                     12 => 2,
@@ -1943,16 +1943,16 @@ test('A Phony Model can be build', function (): void {
                     29 => 6,
                 ],
                 'cw' => [
-                    0  => 1,
-                    1  => 2,
-                    2  => 3,
-                    3  => 4,
-                    4  => 5,
-                    5  => 6,
-                    6  => 7,
-                    7  => 8,
-                    8  => 9,
-                    9  => 10,
+                    0 => 1,
+                    1 => 2,
+                    2 => 3,
+                    3 => 4,
+                    4 => 5,
+                    5 => 6,
+                    6 => 7,
+                    7 => 8,
+                    8 => 9,
+                    9 => 10,
                     10 => 12,
                     11 => 14,
                     12 => 16,
@@ -2007,7 +2007,7 @@ test('A Phony Model can be build', function (): void {
                     'quic' => 29,
                 ],
                 'sw' => 63,
-                'c'  => 30,
+                'c' => 30,
             ],
             'sentence_elements' => [
                 2 => [
@@ -2052,7 +2052,7 @@ test('A Phony Model can be build', function (): void {
                         'with' => 7,
                     ],
                     'sw' => 13,
-                    'c'  => 8,
+                    'c' => 8,
                 ],
                 1 => [
                     'e' => [
@@ -2096,7 +2096,7 @@ test('A Phony Model can be build', function (): void {
                         'pack' => 7,
                     ],
                     'sw' => 13,
-                    'c'  => 8,
+                    'c' => 8,
                 ],
                 -1 => [
                     'e' => [
@@ -2140,7 +2140,7 @@ test('A Phony Model can be build', function (): void {
                         'jugs' => 7,
                     ],
                     'sw' => 13,
-                    'c'  => 8,
+                    'c' => 8,
                 ],
                 -2 => [
                     'e' => [
@@ -2184,7 +2184,7 @@ test('A Phony Model can be build', function (): void {
                         'liqu' => 7,
                     ],
                     'sw' => 13,
-                    'c'  => 8,
+                    'c' => 8,
                 ],
             ],
             'word_lengths' => [
@@ -2217,7 +2217,7 @@ test('A Phony Model can be build', function (): void {
                     4 => 4,
                 ],
                 'sw' => 63,
-                'c'  => 5,
+                'c' => 5,
             ],
             'sentence_lengths' => [
                 'e' => [
@@ -2241,21 +2241,21 @@ test('A Phony Model can be build', function (): void {
                     5 => 2,
                 ],
                 'sw' => 13,
-                'c'  => 3,
+                'c' => 3,
             ],
         ],
         'excluded' => [
             'words' => [
-                0  => 'black',
-                1  => 'boxing',
-                2  => 'brown',
-                3  => 'daft',
-                4  => 'dozen',
-                5  => 'dwarf',
-                6  => 'five',
-                7  => 'glib',
-                8  => 'grabs',
-                9  => 'jackdaws',
+                0 => 'black',
+                1 => 'boxing',
+                2 => 'brown',
+                3 => 'daft',
+                4 => 'dozen',
+                5 => 'dwarf',
+                6 => 'five',
+                7 => 'glib',
+                8 => 'grabs',
+                9 => 'jackdaws',
                 10 => 'jived',
                 11 => 'jocks',
                 12 => 'judge',

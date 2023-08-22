@@ -57,11 +57,11 @@ it('has a cumulative weight index', function (): void {
 
 it('has a index elements', function (): void {
     expect($this->lookupList['i'])->toEqual([
-        'one'   => 0,
-        'two'   => 1,
+        'one' => 0,
+        'two' => 1,
         'three' => 2,
-        'four'  => 3,
-        'five'  => 4,
+        'four' => 3,
+        'five' => 4,
     ]);
 });
 

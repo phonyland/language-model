@@ -14,12 +14,14 @@ class Model
     public array $elements = [];
 
     public int $elementCount;
+
     public LookupList $firstElements;
 
     /** @var array<\Phonyland\LanguageModel\LookupList> */
     public array $sentenceElements = [];
 
     public LookupList $wordLengths;
+
     public LookupList $sentenceLengths;
 
     /** @var array<array<string>> */
@@ -31,9 +33,9 @@ class Model
 
     public function __construct(string $name)
     {
-        $this->config          = new Config($name);
-        $this->firstElements   = new LookupList();
-        $this->wordLengths     = new LookupList();
+        $this->config = new Config($name);
+        $this->firstElements = new LookupList();
+        $this->wordLengths = new LookupList();
         $this->sentenceLengths = new LookupList();
     }
 
@@ -103,7 +105,7 @@ class Model
                         $this->firstElements->addElement($ngram);
 
                         if ($numberOfWordsInSentence - 1 >= $orderInSentence && $orderInSentence <= ($this->config->numberOfSentenceElements - 1)) {
-                            if (!isset($this->sentenceElements[$orderInSentence + 1])) {
+                            if (! isset($this->sentenceElements[$orderInSentence + 1])) {
                                 $this->sentenceElements[$orderInSentence + 1] = new LookupList();
                             }
                             $this->sentenceElements[$orderInSentence + 1]->addElement($ngram);
@@ -111,7 +113,7 @@ class Model
 
                         $positionFromLast = ($numberOfWordsInSentence - 1) - $orderInSentence;
                         if ($positionFromLast <= ($this->config->numberOfSentenceElements - 1) && $positionFromLast >= 0) {
-                            if (!isset($this->sentenceElements[($positionFromLast + 1) * -1])) {
+                            if (! isset($this->sentenceElements[($positionFromLast + 1) * -1])) {
                                 $this->sentenceElements[($positionFromLast + 1) * -1] = new LookupList();
                             }
                             $this->sentenceElements[($positionFromLast + 1) * -1]->addElement($ngram);
@@ -205,13 +207,13 @@ class Model
 
         return [
             'config' => $this->config->toArray(),
-            'data'   => [
-                'elements'          => $this->elements,
-                'elements_count'    => $this->elementCount,
-                'first_elements'    => $this->firstElements->toArray(),
+            'data' => [
+                'elements' => $this->elements,
+                'elements_count' => $this->elementCount,
+                'first_elements' => $this->firstElements->toArray(),
                 'sentence_elements' => $sentenceElements,
-                'word_lengths'      => $this->wordLengths->toArray(),
-                'sentence_lengths'  => $this->sentenceLengths->toArray(),
+                'word_lengths' => $this->wordLengths->toArray(),
+                'sentence_lengths' => $this->sentenceLengths->toArray(),
             ],
             'excluded' => $excluded,
         ];

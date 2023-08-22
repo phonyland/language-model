@@ -14,7 +14,7 @@ final class Element
         public ?LookupList $children = null,
         public ?LookupList $lastChildren = null,
     ) {
-        $this->children     = $children ?? new LookupList();
+        $this->children = $children ?? new LookupList();
         $this->lastChildren = $lastChildren ?? new LookupList();
     }
 
@@ -46,7 +46,7 @@ final class Element
     public function toArray(): array
     {
         return [
-            'c'  => $this->children->toArray(),
+            'c' => $this->children->toArray(),
             'lc' => $this->lastChildren->toArray(),
         ];
     }

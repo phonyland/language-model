@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Phonyland\LanguageModel;
 
-use RuntimeException;
 use Phonyland\NGram\Tokenizer;
+use RuntimeException;
 
 /***
  * @internal
@@ -14,11 +14,16 @@ final class Config
 {
     // region Attributes
 
-    public string $name                  = 'Phony Language Model';
-    public ?Tokenizer $tokenizer         = null;
-    public int $nGramSize                = 2;
-    public int $minWordLength            = 2;
-    public bool $excludeOriginals        = false;
+    public string $name = 'Phony Language Model';
+
+    public ?Tokenizer $tokenizer = null;
+
+    public int $nGramSize = 2;
+
+    public int $minWordLength = 2;
+
+    public bool $excludeOriginals = false;
+
     public int $numberOfSentenceElements = 5;
 
     // endregion
@@ -42,12 +47,12 @@ final class Config
     public function toArray(): array
     {
         return [
-            'name'                        => $this->name,
-            'n_gram_size'                 => $this->nGramSize,
-            'min_word_length'             => $this->minWordLength,
-            'exclude_originals'           => $this->excludeOriginals,
+            'name' => $this->name,
+            'n_gram_size' => $this->nGramSize,
+            'min_word_length' => $this->minWordLength,
+            'exclude_originals' => $this->excludeOriginals,
             'number_of_sentence_elements' => $this->numberOfSentenceElements,
-            'tokenizer'                   => $this->tokenizer->toArray(),
+            'tokenizer' => $this->tokenizer->toArray(),
         ];
     }
 
